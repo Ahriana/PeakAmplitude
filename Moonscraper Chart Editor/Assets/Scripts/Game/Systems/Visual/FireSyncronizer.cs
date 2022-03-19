@@ -6,7 +6,8 @@ using UnityEngine;
 using MoonscraperChartEditor.Song;
 
 [ExecuteInEditMode]
-public class FireSyncronizer : MonoBehaviour {
+public class FireSyncronizer : MonoBehaviour
+{
     public float m_Brightness = 8.0f;
     public float m_Speed = 1.0f;
     static MaterialPropertyBlock m_MatProps;
@@ -26,7 +27,7 @@ public class FireSyncronizer : MonoBehaviour {
             gameModeColourDict = new Dictionary<Chart.GameMode, Dictionary<int, Color>>()
             {
                 {
-                    Chart.GameMode.Guitar, new Dictionary<int, Color>()
+                    Chart.GameMode.Amplitude, new Dictionary<int, Color>()
                     {
                         { (int)Note.GuitarFret.Green, Color.green },
                         { (int)Note.GuitarFret.Red, Color.red },
@@ -35,50 +36,11 @@ public class FireSyncronizer : MonoBehaviour {
                         { (int)Note.GuitarFret.Orange, orangeColor },
                         { (int)Note.GuitarFret.Open, Color.magenta },
                     }
-                },
-                {
-                    Chart.GameMode.Drums, new Dictionary<int, Color>()
-                    {  
-                        { (int)Note.DrumPad.Red, Color.red },
-                        { (int)Note.DrumPad.Yellow, Color.yellow },
-                        { (int)Note.DrumPad.Blue, Color.blue },
-                        { (int)Note.DrumPad.Orange, orangeColor },
-                        { (int)Note.DrumPad.Green, Color.green },
-                        { (int)Note.DrumPad.Kick, Color.magenta },
-                    }
-                },
-                {
-                    Chart.GameMode.GHLGuitar, new Dictionary<int, Color>()
-                    {
-                        { (int)Note.GHLiveGuitarFret.Black1, Color.gray },
-                        { (int)Note.GHLiveGuitarFret.Black2, Color.gray },
-                        { (int)Note.GHLiveGuitarFret.Black3, Color.gray },
-                        { (int)Note.GHLiveGuitarFret.White1, Color.white },
-                        { (int)Note.GHLiveGuitarFret.White2, Color.white  },
-                        { (int)Note.GHLiveGuitarFret.White3, Color.white },
-                        { (int)Note.GHLiveGuitarFret.Open, Color.magenta },
-                    }
-                },
+                }
             };
 
             gameModeColourDictLaneOverride = new Dictionary<Chart.GameMode, Dictionary<int, Dictionary<int, Color>>>()
             {
-                {
-                    Chart.GameMode.Drums, new Dictionary<int, Dictionary<int, Color>>()
-                    {
-                        {
-                            4, new Dictionary<int, Color>()
-                            {
-                                { (int)Note.DrumPad.Red, Color.red },
-                                { (int)Note.DrumPad.Yellow, Color.yellow },
-                                { (int)Note.DrumPad.Blue, Color.blue },
-                                { (int)Note.DrumPad.Orange, Color.green },
-                                { (int)Note.DrumPad.Green, Color.green },
-                                { (int)Note.DrumPad.Kick, Color.magenta },
-                            }
-                        }
-                    }
-                },
             };
 
 
@@ -130,7 +92,7 @@ public class FireSyncronizer : MonoBehaviour {
     {
         Dictionary<int, Color> colorDict = GetColorDict(gameMode, laneCount);
 
-        foreach(var keyValue in colorDict)
+        foreach (var keyValue in colorDict)
         {
             flameMaterials[keyValue.Key].color = keyValue.Value;
         }
@@ -148,7 +110,7 @@ public class FireSyncronizer : MonoBehaviour {
         Dictionary<int, Dictionary<int, Color>> laneOverrideDict;
         if (gameModeColourDictLaneOverride.TryGetValue(gameMode, out laneOverrideDict))
         {
-            
+
             if (laneOverrideDict.TryGetValue(laneCount, out colorDict))
             {
                 return colorDict;
@@ -160,15 +122,16 @@ public class FireSyncronizer : MonoBehaviour {
 
         return null;        // Shouldn't ever be here
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         Fire.m_Brightness = m_Brightness;
         Fire.m_Speed = m_Speed;
 
         if (!Fire.cam)
         {
-            Fire.cam = Camera.main;         
+            Fire.cam = Camera.main;
             Fire.cam.depthTextureMode |= DepthTextureMode.Depth;
         }
 

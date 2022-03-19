@@ -392,29 +392,18 @@ namespace MoonscraperChartEditor.Song
         {
             get
             {
-                if (this.gameMode == Chart.GameMode.Drums)
+                if (!this.IsOpenNote() && (flags & Flags.Tap) == Flags.Tap)
                 {
-                    if (!this.IsOpenNote() && (flags & Flags.ProDrums_Cymbal) == Flags.ProDrums_Cymbal)
-                    {
-                        return NoteType.Cymbal;
-                    }
-
-                    return NoteType.Strum;
+                    return NoteType.Tap;
                 }
                 else
                 {
-                    if (!this.IsOpenNote() && (flags & Flags.Tap) == Flags.Tap)
-                    {
-                        return NoteType.Tap;
-                    }
+                    if (isHopo)
+                        return NoteType.Hopo;
                     else
-                    {
-                        if (isHopo)
-                            return NoteType.Hopo;
-                        else
-                            return NoteType.Strum;
-                    }
+                        return NoteType.Strum;
                 }
+
             }
         }
 
@@ -483,10 +472,7 @@ namespace MoonscraperChartEditor.Song
 
         public bool IsOpenNote()
         {
-            if (gameMode == Chart.GameMode.GHLGuitar)
-                return ghliveGuitarFret == GHLiveGuitarFret.Open;
-            else
-                return guitarFret == GuitarFret.Open;
+            return guitarFret == GuitarFret.Open;
         }
 
         public static Flags GetBannedFlagsForGameMode(Chart.GameMode gameMode)
@@ -495,15 +481,9 @@ namespace MoonscraperChartEditor.Song
 
             switch (gameMode)
             {
-                case Chart.GameMode.Guitar:
-                case Chart.GameMode.GHLGuitar:
+                case Chart.GameMode.Amplitude:
                     {
                         bannedFlags = Flags.ProDrums_Cymbal;
-                        break;
-                    }
-                case Chart.GameMode.Drums:
-                    {
-                        bannedFlags = Flags.Forced | Flags.Tap;
                         break;
                     }
                 default:

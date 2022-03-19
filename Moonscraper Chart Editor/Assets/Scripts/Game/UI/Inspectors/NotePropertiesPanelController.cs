@@ -12,10 +12,10 @@ public class NotePropertiesPanelController : PropertiesPanelController {
     public Text sustainText;
     public Text fretText;
     
-    public Toggle tapToggle;
-    public Toggle forcedToggle;
-    public Toggle cymbalToggle;
-    public Toggle doubleKickToggle;
+    // public Toggle tapToggle;
+    // public Toggle forcedToggle;
+    // public Toggle cymbalToggle;
+    // public Toggle doubleKickToggle;
 
     public GameObject noteToolObject;
     PlaceNoteController noteToolController;
@@ -84,17 +84,17 @@ public class NotePropertiesPanelController : PropertiesPanelController {
         }
         else if (currentNote != null && (prevClonedNote != currentNote || !valuesAreTheSame))
         {
-            string noteTypeString = string.Empty;
-            if (Globals.drumMode)
+            if (currentNote.guitarFret == Note.GuitarFret.Green)
             {
-                noteTypeString = currentNote.GetDrumString(editor.laneInfo);
+                fretText.text = "Fret: Left";
+            } else if (currentNote.guitarFret == Note.GuitarFret.Red)
+            {
+                fretText.text = "Fret: Middle";
+            } else if (currentNote.guitarFret == Note.GuitarFret.Yellow)
+            {
+                fretText.text = "Fret: Right";
             }
-            else if (Globals.ghLiveMode)
-                noteTypeString = currentNote.ghliveGuitarFret.ToString();
-            else
-                noteTypeString = currentNote.guitarFret.ToString();
-
-            fretText.text = "Fret: " + noteTypeString;
+            
             positionText.text = "Position: " + currentNote.tick.ToString();
             sustainText.text = "Length: " + currentNote.length.ToString();
 
@@ -138,10 +138,10 @@ public class NotePropertiesPanelController : PropertiesPanelController {
             Debug.LogError("No note loaded into note inspector");
         }
 
-        forcedToggle.isOn = (flags & Note.Flags.Forced) != 0;
-        tapToggle.isOn = (flags & Note.Flags.Tap) != 0;
-        cymbalToggle.isOn = (flags & Note.Flags.ProDrums_Cymbal) != 0;
-        doubleKickToggle.isOn = (flags & Note.Flags.DoubleKick) != 0;
+        // forcedToggle.isOn = (flags & Note.Flags.Forced) != 0;
+        // tapToggle.isOn = (flags & Note.Flags.Tap) != 0;
+        // cymbalToggle.isOn = (flags & Note.Flags.ProDrums_Cymbal) != 0;
+        // doubleKickToggle.isOn = (flags & Note.Flags.DoubleKick) != 0;
 
         toggleBlockingActive = false;
     }
@@ -152,70 +152,70 @@ public class NotePropertiesPanelController : PropertiesPanelController {
         bool drumsMode = Globals.drumMode;
         bool proDrumsMode = drumsMode && Globals.gameSettings.drumsModeOptions == GameSettings.DrumModeOptions.ProDrums;
 
-        forcedToggle.gameObject.SetActive(!drumsMode);
-        tapToggle.gameObject.SetActive(!drumsMode);
-        cymbalToggle.gameObject.SetActive(proDrumsMode);
-        doubleKickToggle.gameObject.SetActive(proDrumsMode);
+        // forcedToggle.gameObject.SetActive(!drumsMode);
+        // tapToggle.gameObject.SetActive(!drumsMode);
+        // cymbalToggle.gameObject.SetActive(proDrumsMode);
+        // doubleKickToggle.gameObject.SetActive(proDrumsMode);
 
-        if (!drumsMode)
-        {
-            if (IsInNoteTool() && (noteToolObject.activeSelf || Globals.gameSettings.keysModeEnabled))
-            {
-                forcedToggle.interactable = noteToolController.forcedInteractable;
-                tapToggle.interactable = noteToolController.tapInteractable;
-            }
-            else if (!IsInNoteTool())
-            {
-                forcedToggle.interactable = !(currentNote.cannotBeForced && !Globals.gameSettings.keysModeEnabled);
-                tapToggle.interactable = !currentNote.IsOpenNote();
-            }
-            else
-            {
-                forcedToggle.interactable = true;
-                tapToggle.interactable = true;
-            }
-        }
-        else
-        {
-            if (IsInNoteTool() && noteToolObject.activeSelf)
-            {
-                cymbalToggle.interactable = noteToolController.cymbalInteractable;
-                doubleKickToggle.interactable = noteToolController.doubleKickInteractable;
-            }
-            else if (!IsInNoteTool())
-            {
-                cymbalToggle.interactable = NoteFunctions.AllowedToBeCymbal(currentNote);
-                doubleKickToggle.interactable = NoteFunctions.AllowedToBeDoubleKick(currentNote, editor.currentDifficulty);
-            }
-            else
-            {
-                cymbalToggle.interactable = true;
-                doubleKickToggle.interactable = true;
-            }
-        }
+        // if (!drumsMode)
+        // {
+        //     if (IsInNoteTool() && (noteToolObject.activeSelf || Globals.gameSettings.keysModeEnabled))
+        //     {
+        //         forcedToggle.interactable = noteToolController.forcedInteractable;
+        //         tapToggle.interactable = noteToolController.tapInteractable;
+        //     }
+        //     else if (!IsInNoteTool())
+        //     {
+        //         forcedToggle.interactable = !(currentNote.cannotBeForced && !Globals.gameSettings.keysModeEnabled);
+        //         tapToggle.interactable = !currentNote.IsOpenNote();
+        //     }
+        //     else
+        //     {
+        //         forcedToggle.interactable = true;
+        //         tapToggle.interactable = true;
+        //     }
+        // }
+        // else
+        // {
+        //     if (IsInNoteTool() && noteToolObject.activeSelf)
+        //     {
+        //         cymbalToggle.interactable = noteToolController.cymbalInteractable;
+        //         doubleKickToggle.interactable = noteToolController.doubleKickInteractable;
+        //     }
+        //     else if (!IsInNoteTool())
+        //     {
+        //         cymbalToggle.interactable = NoteFunctions.AllowedToBeCymbal(currentNote);
+        //         doubleKickToggle.interactable = NoteFunctions.AllowedToBeDoubleKick(currentNote, editor.currentDifficulty);
+        //     }
+        //     else
+        //     {
+        //         cymbalToggle.interactable = true;
+        //         doubleKickToggle.interactable = true;
+        //     }
+        // }
     }
 
     void Controls()
     {
-        if (MSChartEditorInput.GetInputDown(MSChartEditorInputActions.ToggleNoteTap) && tapToggle.interactable)
-        {
-            tapToggle.isOn = !tapToggle.isOn;
-        }
-
-        if (MSChartEditorInput.GetInputDown(MSChartEditorInputActions.ToggleNoteForced) && forcedToggle.interactable)
-        {
-            forcedToggle.isOn = !forcedToggle.isOn;
-        }
-
-        if (MSChartEditorInput.GetInputDown(MSChartEditorInputActions.ToggleNoteCymbal) && cymbalToggle.interactable)
-        {
-            cymbalToggle.isOn = !cymbalToggle.isOn;
-        }
-
-        if (MSChartEditorInput.GetInputDown(MSChartEditorInputActions.ToggleNoteDoubleKick) && doubleKickToggle.interactable)
-        {
-            doubleKickToggle.isOn = !doubleKickToggle.isOn;
-        }
+        // if (MSChartEditorInput.GetInputDown(MSChartEditorInputActions.ToggleNoteTap) && tapToggle.interactable)
+        // {
+        //     tapToggle.isOn = !tapToggle.isOn;
+        // }
+        // 
+        // if (MSChartEditorInput.GetInputDown(MSChartEditorInputActions.ToggleNoteForced) && forcedToggle.interactable)
+        // {
+        //     forcedToggle.isOn = !forcedToggle.isOn;
+        // }
+        // 
+        // if (MSChartEditorInput.GetInputDown(MSChartEditorInputActions.ToggleNoteCymbal) && cymbalToggle.interactable)
+        // {
+        //     cymbalToggle.isOn = !cymbalToggle.isOn;
+        // }
+        // 
+        // if (MSChartEditorInput.GetInputDown(MSChartEditorInputActions.ToggleNoteDoubleKick) && doubleKickToggle.interactable)
+        // {
+        //     doubleKickToggle.isOn = !doubleKickToggle.isOn;
+        // }
     }
 
     new void OnDisable()
@@ -240,26 +240,26 @@ public class NotePropertiesPanelController : PropertiesPanelController {
 
     void SetTapNoteTool()
     {
-        if (tapToggle.interactable)
-            SetNoteToolFlag(ref noteToolController.desiredFlags, tapToggle, Note.Flags.Tap);
+        // if (tapToggle.interactable)
+        //     SetNoteToolFlag(ref noteToolController.desiredFlags, tapToggle, Note.Flags.Tap);
     }
 
     void SetTapNote()
     {
-        if (currentNote == prevNote)
-        {
-            var newFlags = currentNote.flags;
-
-            if (currentNote != null)
-            {
-                if (tapToggle.isOn)
-                    newFlags |= Note.Flags.Tap;
-                else
-                    newFlags &= ~Note.Flags.Tap;
-            }
-
-            SetNewFlags(currentNote, newFlags);
-        }
+        // if (currentNote == prevNote)
+        // {
+        //     var newFlags = currentNote.flags;
+        // 
+        //     if (currentNote != null)
+        //     {
+        //         if (tapToggle.isOn)
+        //             newFlags |= Note.Flags.Tap;
+        //         else
+        //             newFlags &= ~Note.Flags.Tap;
+        //     }
+        // 
+        //     SetNewFlags(currentNote, newFlags);
+        // }
     }
 
     void SetNoteToolFlag(ref Note.Flags flags, Toggle uiToggle, Note.Flags flagsToToggle)
@@ -317,76 +317,76 @@ public class NotePropertiesPanelController : PropertiesPanelController {
 
     void SetForcedNote()
     {
-        if (currentNote == prevNote)
-        {
-            var newFlags = currentNote.flags;
-
-            if (currentNote != null)
-            {
-                if (forcedToggle.isOn)
-                    newFlags |= Note.Flags.Forced;
-                else
-                    newFlags &= ~Note.Flags.Forced;
-            }
-
-            SetNewFlags(currentNote, newFlags);
-        }
+        // if (currentNote == prevNote)
+        // {
+        //     var newFlags = currentNote.flags;
+        // 
+        //     if (currentNote != null)
+        //     {
+        //         if (forcedToggle.isOn)
+        //             newFlags |= Note.Flags.Forced;
+        //         else
+        //             newFlags &= ~Note.Flags.Forced;
+        //     }
+        // 
+        //     SetNewFlags(currentNote, newFlags);
+        // }
     }
 
     void SetForcedNoteTool()
     {
-        if (forcedToggle.interactable)
-            SetNoteToolFlag(ref noteToolController.desiredFlags, forcedToggle, Note.Flags.Forced);
+        // if (forcedToggle.interactable)
+        //     SetNoteToolFlag(ref noteToolController.desiredFlags, forcedToggle, Note.Flags.Forced);
     }
 
     void SetCymbalNote()
     {
-        if (currentNote == prevNote)
-        {
-            var newFlags = currentNote.flags;
-
-            if (currentNote != null)
-            {
-                if (cymbalToggle.isOn)
-                    newFlags |= Note.Flags.ProDrums_Cymbal;
-                else
-                    newFlags &= ~Note.Flags.ProDrums_Cymbal;
-            }
-
-            SetNewFlags(currentNote, newFlags);
-        }
+        // if (currentNote == prevNote)
+        // {
+        //     var newFlags = currentNote.flags;
+        // 
+        //     if (currentNote != null)
+        //     {
+        //         if (cymbalToggle.isOn)
+        //             newFlags |= Note.Flags.ProDrums_Cymbal;
+        //         else
+        //             newFlags &= ~Note.Flags.ProDrums_Cymbal;
+        //     }
+        // 
+        //     SetNewFlags(currentNote, newFlags);
+        // }
 
     }
 
     void SetCymbalNoteTool()
     {
-        if (cymbalToggle.interactable)
-            SetNoteToolFlag(ref noteToolController.desiredFlags, cymbalToggle, Note.Flags.ProDrums_Cymbal);
+        // if (cymbalToggle.interactable)
+        //     SetNoteToolFlag(ref noteToolController.desiredFlags, cymbalToggle, Note.Flags.ProDrums_Cymbal);
     }
 
     void SetDoubleKickNote()
     {
-        if (currentNote == prevNote)
-        {
-            var newFlags = currentNote.flags;
-
-            if (currentNote != null)
-            {
-                if (doubleKickToggle.isOn)
-                    newFlags |= Note.Flags.DoubleKick;
-                else
-                    newFlags &= ~Note.Flags.DoubleKick;
-            }
-
-            SetNewFlags(currentNote, newFlags);
-        }
+        // if (currentNote == prevNote)
+        // {
+        //     var newFlags = currentNote.flags;
+        // 
+        //     if (currentNote != null)
+        //     {
+        //         if (doubleKickToggle.isOn)
+        //             newFlags |= Note.Flags.DoubleKick;
+        //         else
+        //             newFlags &= ~Note.Flags.DoubleKick;
+        //     }
+        // 
+        //     SetNewFlags(currentNote, newFlags);
+        // }
 
     }
 
     void SetDoubleKickNoteTool()
     {
-        if (doubleKickToggle.interactable)
-            SetNoteToolFlag(ref noteToolController.desiredFlags, doubleKickToggle, Note.Flags.DoubleKick);
+        // if (doubleKickToggle.interactable)
+        //     SetNoteToolFlag(ref noteToolController.desiredFlags, doubleKickToggle, Note.Flags.DoubleKick);
     }
 
     void SetNewFlags(Note note, Note.Flags newFlags)

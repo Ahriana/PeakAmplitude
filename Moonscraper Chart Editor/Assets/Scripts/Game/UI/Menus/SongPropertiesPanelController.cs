@@ -15,17 +15,6 @@ public class SongPropertiesPanelController : TabMenu
 {
     public Scrollbar verticalScroll;
 
-    [Header("General Settings")]
-    public InputField songName;
-    public InputField artist;
-    public InputField charter;
-    public InputField album;
-    public InputField year;
-    public InputField offset;
-    public InputField difficulty;
-    public InputField genre;
-    public InputField mediaType;
-
     [Header("Audio Settings")]
     public Text musicStream;
     public Text guitarStream;
@@ -38,9 +27,6 @@ public class SongPropertiesPanelController : TabMenu
 	public Text drum3Stream;
 	public Text drum4Stream;
     public Text crowdStream;
-
-    [Header("Advanced Settings")]
-    public MS_TMPro_InputField customIniSettings;
 
     bool init = false;
 
@@ -55,14 +41,6 @@ public class SongPropertiesPanelController : TabMenu
     protected override void Start()
     {
         base.Start();
-        offset.onValidateInput = LocalesManager.ValidateDecimalInput;
-
-        songName.onValidateInput = ValidateStringMetadataInput;
-        artist.onValidateInput = ValidateStringMetadataInput;
-        charter.onValidateInput = ValidateStringMetadataInput;
-        album.onValidateInput = ValidateStringMetadataInput;
-        genre.onValidateInput = ValidateStringMetadataInput;
-        mediaType.onValidateInput = ValidateStringMetadataInput;
     }
 
     protected override void OnEnable()
@@ -90,17 +68,6 @@ public class SongPropertiesPanelController : TabMenu
 
         init = true;
         Song song = editor.currentSong;
-        Metadata metaData = song.metaData;
-
-        songName.text = song.name;
-        artist.text = metaData.artist;
-        charter.text = metaData.charter;
-        album.text = metaData.album;
-        year.text = metaData.year;
-        offset.text = song.offset.ToString();
-        difficulty.text = metaData.difficulty.ToString();
-        genre.text = metaData.genre;
-        mediaType.text = metaData.mediatype;
 
         // Init audio names
         setAudioTextLabels();
@@ -108,114 +75,42 @@ public class SongPropertiesPanelController : TabMenu
 
         customTime = TimeSpan.FromSeconds(editor.currentSongLength);
 
-        UpdateIniTextFromSongProperties();
-
         ChartEditor.isDirty = edit;
         StartCoroutine(ScrollSetDelay());
     }
 
     protected override void OnDisable()
     {
-        UpdateIni();
         base.OnDisable();
     }
 
     IEnumerator ScrollSetDelay()
     {
         yield return null;
-        verticalScroll.value = 1;
+        // verticalScroll.value = 1;
     }
 
     void Apply()
     {
-        editor.currentSong.name = songName.text;
-        editor.currentSong.metaData.artist = artist.text;
+
     }
 
     public void setSongProperties()
     {
         if (!init)
         {
-            Song song = editor.currentSong;
-            Metadata metaData = song.metaData;
-
-            if (!song.name.Equals(songName.text))
-            {
-                song.name = songName.text;
-                editor.uiServices.editorPanels.displayProperties.UpdateSongNameText();
-                editor.RepaintWindowText();
-            }
-
-            metaData.artist = artist.text;
-            metaData.charter = charter.text;
-            metaData.album = album.text;
-            metaData.year = year.text;
-
-            try
-            {
-                song.offset = float.Parse(offset.text);
-            }
-            catch
-            {
-                song.offset = 0;
-            }
-
-            try
-            {
-                metaData.difficulty = int.Parse(difficulty.text);
-            }
-            catch
-            {
-                metaData.difficulty = 0;
-            }
-
-            metaData.genre = genre.text;
-            metaData.mediatype = mediaType.text;
-
-            if (editor.currentSong.manualLength.HasValue)   // if we were already using the manual length
-            {
-                editor.currentSong.manualLength = (float)customTime.TotalSeconds;
-            }
-
             ChartEditor.isDirty = true;
         }
     }
 
-    public void UpdateIni()
-    {
-        Song song = editor.currentSong;
-        song.iniProperties = SongIniFunctions.SongIniFromString(customIniSettings.text);
-    }
-
-    void UpdateIniTextFromSongProperties()
-    {
-        customIniSettings.text = SongIniFunctions.IniTextFromSongProperties(editor.currentSong.iniProperties);
-    }
-
     public void RefreshIniDisplay()
     {
-        UpdateIni();
-        UpdateIniTextFromSongProperties();
         ChartEditor.isDirty = true;
     }
 
     public void PopulateIniFromGeneralSettings()
     {
         RefreshIniDisplay();
-        SongIniFunctions.PopulateIniWithSongMetadata(editor.currentSong, editor.currentSong.iniProperties, editor.currentSongLength);
-        UpdateIniTextFromSongProperties();
-        ChartEditor.isDirty = true;
-    }
-
-    public void AddCloneHeroIniTags()
-    {
-        RefreshIniDisplay();
-
-        var song = editor.currentSong;
-        var iniParser = song.iniProperties;
-
-        SongIniFunctions.AddCloneHeroIniTags(song, iniParser, editor.currentSongLength);
-        UpdateIniTextFromSongProperties();
         ChartEditor.isDirty = true;
     }
 

@@ -49,7 +49,7 @@ public class DrumModeProperties : UpdateableService
 
     void OnChartReload()
     {
-        bool isDrums = ChartEditor.Instance.currentChart.gameMode == Chart.GameMode.Drums;
+        bool isDrums = false;
         gameObject.SetActive(isDrums);
 
         if (isDrums)

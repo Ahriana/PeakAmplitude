@@ -236,7 +236,7 @@ namespace MoonscraperChartEditor.Song.IO
                                 Song.Instrument instrumentParsingType;
                                 if (!ChartIOHelper.c_instrumentParsingTypeLookup.TryGetValue(instrument, out instrumentParsingType))
                                 {
-                                    instrumentParsingType = Song.Instrument.Guitar;
+                                    instrumentParsingType = Song.Instrument.Amp1;
                                 }
 
                                 LoadChart(song.GetChart(instrument, chartDiff), stringData, instrumentParsingType, fileLoadType);
@@ -704,14 +704,7 @@ namespace MoonscraperChartEditor.Song.IO
 
                                         case ChartIOHelper.c_starpowerDrumFillId:
                                             {
-                                                if (instrument == Song.Instrument.Drums)
-                                                {
-                                                    chart.Add(new Starpower(tick, length, Starpower.Flags.ProDrums_Activation), false);
-                                                }
-                                                else
-                                                {
-                                                    Debug.Assert(false, "Found drum fill flag on incompatible instrument.");
-                                                }
+                                                Debug.Assert(false, "Found drum fill flag on incompatible instrument.");
                                                 break;
                                             }
 
@@ -775,14 +768,6 @@ namespace MoonscraperChartEditor.Song.IO
         {
             switch (gameMode)
             {
-                case Chart.GameMode.GHLGuitar:
-                    {
-                        return GhlChartNoteNumberToProcessFnMap;
-                    }
-                case Chart.GameMode.Drums:
-                    {
-                        return DrumsChartNoteNumberToProcessFnMap;
-                    }
 
                 default: break;
             }

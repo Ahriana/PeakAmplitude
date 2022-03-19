@@ -12,7 +12,6 @@ public static class DrumsInput
         {
             4, new Dictionary<Note.DrumPad, MSChartEditorInputActions?>()
             {
-                { Note.DrumPad.Orange, MSChartEditorInputActions.DrumPadGreen },
                 { Note.DrumPad.Green, null }
             }
         }
@@ -20,32 +19,16 @@ public static class DrumsInput
 
     static readonly Dictionary<Note.DrumPad, MSChartEditorInputActions> drumPadToInputDict = new Dictionary<Note.DrumPad, MSChartEditorInputActions>()
     {
-        { Note.DrumPad.Red, MSChartEditorInputActions.DrumPadRed },
-        { Note.DrumPad.Yellow, MSChartEditorInputActions.DrumPadYellow },
-        { Note.DrumPad.Blue, MSChartEditorInputActions.DrumPadBlue },
-        { Note.DrumPad.Orange, MSChartEditorInputActions.DrumPadOrange },
-        { Note.DrumPad.Green, MSChartEditorInputActions.DrumPadGreen },
-        { Note.DrumPad.Kick, MSChartEditorInputActions.DrumPadKick },
     };
 
     static readonly Dictionary<Note.DrumPad, MSChartEditorInputActions> proDrumsPadToTomInputDict = new Dictionary<Note.DrumPad, MSChartEditorInputActions>()
     {
-        { Note.DrumPad.Red, MSChartEditorInputActions.DrumPadProRedTom },
-        { Note.DrumPad.Yellow, MSChartEditorInputActions.DrumPadProYellowTom },
-        { Note.DrumPad.Blue, MSChartEditorInputActions.DrumPadProBlueTom },
-        { Note.DrumPad.Orange, MSChartEditorInputActions.DrumPadProOrangeTom },
-        { Note.DrumPad.Green, MSChartEditorInputActions.DrumPadProGreenTom },
-        { Note.DrumPad.Kick, MSChartEditorInputActions.DrumPadProKick1 },
+
     };
 
     static readonly Dictionary<Note.DrumPad, MSChartEditorInputActions> proDrumsPadToCymbalInputDict = new Dictionary<Note.DrumPad, MSChartEditorInputActions>()
     {
-        { Note.DrumPad.Red, MSChartEditorInputActions.DrumPadProRedCymbal },
-        { Note.DrumPad.Yellow, MSChartEditorInputActions.DrumPadProYellowCymbal },
-        { Note.DrumPad.Blue, MSChartEditorInputActions.DrumPadProBlueCymbal },
-        { Note.DrumPad.Orange, MSChartEditorInputActions.DrumPadProOrangeCymbal },
-        { Note.DrumPad.Green, MSChartEditorInputActions.DrumPadProGreenCymbal },
-        //{ Note.DrumPad.Kick, MSChartEditorInputActions.DrumPadProKick1 },
+
     };
 
     static bool GetPadPressedInput(Note.DrumPad drumFret, LaneInfo laneInfo, Dictionary<Note.DrumPad, MSChartEditorInputActions> inputsToCheck, Dictionary<int, Dictionary<Note.DrumPad, MSChartEditorInputActions?>> laneCountOverridesDict)

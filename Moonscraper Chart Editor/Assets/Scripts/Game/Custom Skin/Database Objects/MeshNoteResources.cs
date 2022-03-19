@@ -53,14 +53,8 @@ public class MeshNoteResources : ScriptableObject {
 
         switch (gameMode)
         {
-            case (Chart.GameMode.Guitar):
+            case (Chart.GameMode.Amplitude):
                 paletteMap = guitarModeLaneColorIndicies;
-                break;
-            case (Chart.GameMode.Drums):
-                paletteMap = laneCount == 4 ? drumModeLaneColorIndicies4LaneOverride : drumModeLaneColorIndicies;
-                break;
-            case (Chart.GameMode.GHLGuitar):
-                paletteMap = ghlGuitarModeLaneColorIndicies;
                 break;
             default:
                 throw new System.Exception("Unhandled gamemode");

@@ -40,11 +40,11 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 24b9282835af8b148ab15a2f4467dad4, type: 2}
   - {fileID: 2100000, guid: 94f00d72f75ec01419a94fd4d9bd48bc, type: 2}
   strumColorPalette:
-  - {fileID: 2100000, guid: 23b61ca831787864e902729f8fc3adcd, type: 2}
-  - {fileID: 2100000, guid: 3d4a9de1e0f7de6498a967d8ea275c87, type: 2}
-  - {fileID: 2100000, guid: 7d9813990b8b89440bc311f6a63a81ae, type: 2}
   - {fileID: 2100000, guid: 0b83883012a4bab4e9a5718d9c77916c, type: 2}
-  - {fileID: 2100000, guid: 57e46b08f16ba2049ad3d98ba28caa84, type: 2}
+  - {fileID: 2100000, guid: 0b83883012a4bab4e9a5718d9c77916c, type: 2}
+  - {fileID: 2100000, guid: 0b83883012a4bab4e9a5718d9c77916c, type: 2}
+  - {fileID: 2100000, guid: 0b83883012a4bab4e9a5718d9c77916c, type: 2}
+  - {fileID: 2100000, guid: 0b83883012a4bab4e9a5718d9c77916c, type: 2}
   - {fileID: 2100000, guid: bb748c20d61e74b4b90462546af892fa, type: 2}
   - {fileID: 2100000, guid: 8c7352ab646f1fb4ab444df0c6f62ceb, type: 2}
   - {fileID: 2100000, guid: ebc0e70d8eda7bb448116190d74828d0, type: 2}

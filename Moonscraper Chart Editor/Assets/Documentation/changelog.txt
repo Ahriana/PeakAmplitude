@@ -299,7 +299,7 @@ Beyond 1.4.0.4
 
 	CHANGES
 	-Open note toggle key for note tool now shifted onto the '0' key instead of being dynamic.
-	-config.ini no longer generated in the application directory. Stored in the same directory as the autosave. (Users\[user]\AppData\LocalLow\FireFox Dev\Moonscraper Chart Editor)
+	-config.ini no longer generated in the application directory. Stored in the same directory as the autosave. (Users\[user]\AppData\LocalLow\Ahriana\PeakAmplitude)
 		This allows user settings to be preserved between different versions of Moonscraper from this version onwards.
 	-Removed song name text UI. Display song name + chart name in window text instead.
 	-Allow some tools to operate in play mode if safe to do so.

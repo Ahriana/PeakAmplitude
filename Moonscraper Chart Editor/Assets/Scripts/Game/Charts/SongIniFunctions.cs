@@ -70,23 +70,23 @@ public static class SongIniFunctions
     {
         switch (instrument)
         {
-            case Song.Instrument.Guitar:
-                return "diff_guitar";
+            case Song.Instrument.Amp1:
+                return "gameplay_name_1";
 
-            case Song.Instrument.Bass:
-                return "diff_bass";
+            case Song.Instrument.Amp2:
+                return "gameplay_name_2";
 
-            case Song.Instrument.Drums:
-                return "diff_drums";
+            case Song.Instrument.Amp3:
+                return "gameplay_name_3";
 
-            case Song.Instrument.Keys:
-                return "diff_keys";
+            case Song.Instrument.Amp4:
+                return "gameplay_name_4";
 
-            case Song.Instrument.GHLiveGuitar:
-                return "diff_guitarghl";
+            case Song.Instrument.Amp5:
+                return "gameplay_name_5";
 
-            case Song.Instrument.GHLiveBass:
-                return "diff_bassghl";
+            case Song.Instrument.Amp6:
+                return "gameplay_name_6";
         }
 
         return string.Empty;

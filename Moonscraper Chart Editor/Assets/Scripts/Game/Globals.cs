@@ -44,14 +44,14 @@ public class Globals : MonoBehaviour {
     {
         get
         {
-            return ChartEditor.Instance.currentChart.gameMode == Chart.GameMode.Drums;
+            return false;
         }
     }
     public static bool ghLiveMode
     {
         get
         {
-            return ChartEditor.Instance.currentChart.gameMode == Chart.GameMode.GHLGuitar;
+            return false;
         }
     }
 

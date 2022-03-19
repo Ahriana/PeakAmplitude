@@ -48,12 +48,6 @@ public enum MSChartEditorInputActions
     MoveMeasurePositive,
     MoveMeasureNegative,
 
-    NoteSetNatural,
-    NoteSetStrum,
-    NoteSetHopo,
-    NoteSetTap,
-    NoteSetCymbal,
-    
     PlayPause,
 
     ReloadAudio,
@@ -71,18 +65,11 @@ public enum MSChartEditorInputActions
 
     ToggleBpmAnchor,
     ToggleClap,
-    ToggleExtendedSustains,
     ToggleMetronome,
     ToggleMouseMode,
-    ToggleNoteForced,
-    ToggleNoteTap,
-    ToggleNoteCymbal,
-    ToggleNoteDoubleKick,
-    ToggleStarpowerDrumsFillActivation,
     ToggleViewMode, 
     
     ToolNoteBurst,
-    ToolNoteHold,
     ToolSelectCursor,
     ToolSelectEraser,
     ToolSelectNote,
@@ -95,10 +82,6 @@ public enum MSChartEditorInputActions
     ToolNoteLane1,
     ToolNoteLane2,
     ToolNoteLane3,
-    ToolNoteLane4,
-    ToolNoteLane5,
-    ToolNoteLane6,
-    ToolNoteLaneOpen,
 
     CloseMenu,
 
@@ -109,31 +92,7 @@ public enum MSChartEditorInputActions
     GuitarFretGreen,
     GuitarFretRed,
     GuitarFretYellow,
-    GuitarFretBlue,
-    GuitarFretOrange,
-
-    // Drum Actions
-    DrumPadRed,
-    DrumPadYellow,
-    DrumPadBlue,
-    DrumPadOrange,
-    DrumPadGreen,
-    DrumPadKick,
-
-    // Pro Drums Actions
-    DrumPadProRedTom,
-    DrumPadProRedCymbal,
-    DrumPadProYellowTom,
-    DrumPadProYellowCymbal,
-    DrumPadProBlueTom,
-    DrumPadProBlueCymbal,
-    DrumPadProOrangeTom,
-    DrumPadProOrangeCymbal,
-    DrumPadProGreenTom,
-    DrumPadProGreenCymbal,
-    DrumPadProKick1,
-
-    Whammy,
+    
     StartGameplay,
 }
 

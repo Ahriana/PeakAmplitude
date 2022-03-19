@@ -8,7 +8,8 @@ using System.Runtime.Serialization;
 using System.IO;
 using MoonscraperChartEditor.Song;
 
-public class ClipboardObjectController : Snapable {
+public class ClipboardObjectController : Snapable
+{
     public static string CLIPBOARD_FILE_LOCATION { get; private set; }
 
     public GroupSelect groupSelectTool;
@@ -64,7 +65,7 @@ public class ClipboardObjectController : Snapable {
         try
         {
             FileStream fs = null;
-            
+
             try
             {
                 fs = new FileStream(CLIPBOARD_FILE_LOCATION, FileMode.Create, FileAccess.ReadWrite);
@@ -193,33 +194,15 @@ public class ClipboardObjectController : Snapable {
                     {
                         Note note = (Note)objectToAdd;
 
-                        if (clipboard.instrument == Song.Instrument.GHLiveGuitar || clipboard.instrument == Song.Instrument.GHLiveBass)
-                        {
-                            // Pasting from a ghl track
-                            if (!Globals.ghLiveMode)
-                            {
-                                if (note.ghliveGuitarFret == Note.GHLiveGuitarFret.Open)
-                                    note.guitarFret = Note.GuitarFret.Open;
-                                else if (note.ghliveGuitarFret == Note.GHLiveGuitarFret.White3)
-                                    continue;
-                            }
-                        }
-                        else if (Globals.ghLiveMode)
-                        {
-                            // Pasting onto a ghl track
-                            if (note.guitarFret == Note.GuitarFret.Open)
-                                note.ghliveGuitarFret = Note.GHLiveGuitarFret.Open;
-                        }
+                        // Pasting onto a ghl track
+                        if (note.guitarFret == Note.GuitarFret.Open)
+                            note.ghliveGuitarFret = Note.GHLiveGuitarFret.Open;
 
                         note.length = TickFunctions.TickScaling(note.length, clipboard.resolution, editor.currentSong.resolution);
                     }
                     else if (objectToAdd.GetType() == typeof(Starpower))
                     {
                         Starpower sp = (Starpower)objectToAdd;
-                        if (editor.currentInstrument != Song.Instrument.Drums)
-                        {
-                            sp.flags &= ~Starpower.Flags.ProDrums_Activation;
-                        }
                         sp.length = TickFunctions.TickScaling(sp.length, clipboard.resolution, editor.currentSong.resolution);
                     }
 

@@ -16,13 +16,8 @@ public class SettingsController : TabMenu
     public Toggle clapStrum;
     public Toggle clapHopo;
     public Toggle clapTap;
-    public Toggle leftyFlipToggle;
-    public Toggle extendedSustainsToggle;
-    public Toggle sustainGapEnabledToggle;
-    public Toggle sustainGapTimeBasedToggle;
     public Toggle resetAfterPlay;
     public Toggle resetAfterGameplay;
-    public Toggle autoValidateSongOnSave;
     public Toggle slowdownPitchCorrectionEnabled;
     public Toggle lyricEditorStepSnappingEnabled;
 
@@ -43,8 +38,6 @@ public class SettingsController : TabMenu
     public Slider masterVolumeSlider;
     public Slider musicPanSlider;
 
-    public InputField sustainGapInput;
-    public InputField sustainGapTimeInput;
     public InputField lyricEditorPhaseEndTimeInput;
     public InputField newSongResolutionInputField;
 
@@ -69,9 +62,6 @@ public class SettingsController : TabMenu
     {
         base.Start();
 
-        sustainGapInput.onValidateInput = Step.validateStepVal;
-        sustainGapInput.text = Globals.gameSettings.sustainGap.ToString();
-        sustainGapTimeInput.text = Globals.gameSettings.sustainGapTimeMs.ToString();
         lyricEditorPhaseEndTimeInput.text = Globals.gameSettings.lyricEditorSettings.phaseEndThreashold.ToString();
         lyricEditorPhaseEndTimeInput.onValidateInput = LocalesManager.ValidateDecimalInput;
     }
@@ -80,23 +70,10 @@ public class SettingsController : TabMenu
     {
         base.Update();
 
-        if (!string.IsNullOrEmpty(sustainGapInput.text))
-        {
-            sustainGapInput.text = Globals.gameSettings.sustainGap.ToString();
-        }
-
-        if (!string.IsNullOrEmpty(sustainGapTimeInput.text) && int.Parse(sustainGapTimeInput.text) != Globals.gameSettings.sustainGapTimeMs)
-        {
-            sustainGapTimeInput.text = Globals.gameSettings.sustainGapTimeMs.ToString();
-        }
-
         if (!string.IsNullOrEmpty(lyricEditorPhaseEndTimeInput.text) && float.Parse(lyricEditorPhaseEndTimeInput.text) != Globals.gameSettings.lyricEditorSettings.phaseEndThreashold)
         {
             lyricEditorPhaseEndTimeInput.text = Globals.gameSettings.lyricEditorSettings.phaseEndThreashold.ToString();
         }
-
-        // Set all variables' values based on the UI
-        Globals.gameSettings.sustainGapEnabled.value = sustainGapEnabledToggle.isOn;
 
         Globals.gameSettings.vol_song.value = musicSourceSlider.value;
         Globals.gameSettings.vol_guitar.value = guitarSourceSlider.value;
@@ -125,9 +102,6 @@ public class SettingsController : TabMenu
         base.OnEnable();
 
         // Initialise GUI
-        sustainGapEnabledToggle.isOn = Globals.gameSettings.sustainGapEnabled;
-        sustainGapTimeBasedToggle.isOn = Globals.gameSettings.sustainGapIsTimeBased;
-        sustainGapTimeInput.text = Globals.gameSettings.sustainGapTimeMs.ToString();
         lyricEditorPhaseEndTimeInput.text = Globals.gameSettings.lyricEditorSettings.phaseEndThreashold.ToString();
         newSongResolutionInputField.text = Globals.gameSettings.newSongResolution.ToString();
 
@@ -136,8 +110,6 @@ public class SettingsController : TabMenu
         initClapToggle(clapStrum, GameSettings.ClapToggle.STRUM);
         initClapToggle(clapHopo, GameSettings.ClapToggle.HOPO);
         initClapToggle(clapTap, GameSettings.ClapToggle.TAP);
-
-        leftyFlipToggle.isOn = Globals.gameSettings.notePlacementMode == GameSettings.NotePlacementMode.LeftyFlip;
 
         switch(Application.targetFrameRate)
         {
@@ -198,10 +170,8 @@ public class SettingsController : TabMenu
         //clapSourceSlider.value = editor.clapSource.volume;
         musicPanSlider.value = Globals.gameSettings.audio_pan * 10.0f;
 
-        extendedSustainsToggle.isOn = Globals.gameSettings.extendedSustainsEnabled;
         resetAfterPlay.isOn = Globals.gameSettings.resetAfterPlay;
         resetAfterGameplay.isOn = Globals.gameSettings.resetAfterGameplay;
-        autoValidateSongOnSave.isOn = Globals.gameSettings.autoValidateSongOnSave;
         slowdownPitchCorrectionEnabled.isOn = Globals.gameSettings.slowdownPitchCorrectionEnabled;
         lyricEditorStepSnappingEnabled.isOn = Globals.gameSettings.lyricEditorSettings.stepSnappingEnabled;
 
@@ -350,7 +320,6 @@ public class SettingsController : TabMenu
         }
 
         Globals.gameSettings.sustainGap = stepVal;
-        sustainGapInput.text = Globals.gameSettings.sustainGap.ToString();
     }
 
     public void OnSustainGapTimeBasedToggled(bool value)
@@ -363,9 +332,6 @@ public class SettingsController : TabMenu
     private void UpdateSustainGapInteractability()
     {
         bool value = Globals.gameSettings.sustainGapIsTimeBased;
-
-        sustainGapInput.interactable = !value;
-        sustainGapTimeInput.interactable = value;
     }
 
     public void OnSustainGapTimeInputUpdated(string value)
@@ -382,10 +348,6 @@ public class SettingsController : TabMenu
     public void OnSustainGapTimeEndInput(string value)
     {
         OnSustainGapTimeInputUpdated(value);
-        if (string.IsNullOrEmpty(value))
-        {
-            sustainGapTimeInput.text = "0";
-        }
     }
 
     public void OnNewSongResolutionInputUpdated(string value)

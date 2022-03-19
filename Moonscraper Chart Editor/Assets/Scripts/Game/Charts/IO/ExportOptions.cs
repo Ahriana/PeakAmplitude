@@ -28,7 +28,7 @@ namespace MoonscraperChartEditor.Song.IO
 
         public enum Format
         {
-            Chart, Midi, Msce
+            Midi, Chart, Msce
         }
 
         public enum Game

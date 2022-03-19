@@ -28,7 +28,7 @@ public class MenuBar : UpdateableService {
     [SerializeField]
     Button gameplayButton;
 
-    public static Song.Instrument currentInstrument = Song.Instrument.Guitar;
+    public static Song.Instrument currentInstrument = Song.Instrument.Amp1;
     public static Song.Difficulty currentDifficulty = Song.Difficulty.Expert;
 
     int desiredLaneCount = 0;
@@ -64,13 +64,14 @@ public class MenuBar : UpdateableService {
 
     void Controls()
     {
-        if (MSChartEditorInput.GetInputDown(MSChartEditorInputActions.ToggleExtendedSustains))
-        {
-            ToggleExtendedSustains();
-            editor.globals.services.notificationBar.PushNotification("EXTENDED SUSTAINS TOGGLED " + Services.BoolToStrOnOff(Globals.gameSettings.extendedSustainsEnabled), 2, true);
-        }
+        // if (MSChartEditorInput.GetInputDown(MSChartEditorInputActions.ToggleExtendedSustains))
+        // {
+        //     ToggleExtendedSustains();
+        //     editor.globals.services.notificationBar.PushNotification("EXTENDED SUSTAINS TOGGLED " + Services.BoolToStrOnOff(Globals.gameSettings.extendedSustainsEnabled), 2, true);
+        // }
 
-        else if (MSChartEditorInput.GetInputDown(MSChartEditorInputActions.ToggleMouseMode))
+            // else if (MSChartEditorInput.GetInputDown(MSChartEditorInputActions.ToggleMouseMode))
+        if (MSChartEditorInput.GetInputDown(MSChartEditorInputActions.ToggleMouseMode))
         {
             ToggleMouseLockMode();
             editor.globals.services.notificationBar.PushNotification("KEYS MODE TOGGLED " + Services.BoolToStrOnOff(Globals.gameSettings.keysModeEnabled), 2, true);
@@ -222,45 +223,31 @@ public class MenuBar : UpdateableService {
         toggle.isOn = ChartEditor.Instance.currentInstrument == instrument;
     }
 
-    public void SetGuitarInstrumentToggle(Toggle toggle)
+    public void SetAmp1InstrumentToggle(Toggle toggle)
     {
-        SetInstrumentToggle(toggle, Song.Instrument.Guitar);
+        SetInstrumentToggle(toggle, Song.Instrument.Amp1);
+    }
+    public void SetAmp2InstrumentToggle(Toggle toggle)
+    {
+        SetInstrumentToggle(toggle, Song.Instrument.Amp2);
+    }
+    public void SetAmp3InstrumentToggle(Toggle toggle)
+    {
+        SetInstrumentToggle(toggle, Song.Instrument.Amp3);
+    }
+    public void SetAmp4InstrumentToggle(Toggle toggle)
+    {
+        SetInstrumentToggle(toggle, Song.Instrument.Amp4);
+    }
+    public void SetAmp5InstrumentToggle(Toggle toggle)
+    {
+        SetInstrumentToggle(toggle, Song.Instrument.Amp5);
+    }
+    public void SetAmp6InstrumentToggle(Toggle toggle)
+    {
+        SetInstrumentToggle(toggle, Song.Instrument.Amp6);
     }
 
-    public void SetGuitarCoopInstrumentToggle(Toggle toggle)
-    {
-        SetInstrumentToggle(toggle, Song.Instrument.GuitarCoop);
-    }
-
-    public void SetBassInstrumentToggle(Toggle toggle)
-    {
-        SetInstrumentToggle(toggle, Song.Instrument.Bass);
-    }
-
-    public void SetRhythmInstrumentToggle(Toggle toggle)
-    {
-        SetInstrumentToggle(toggle, Song.Instrument.Rhythm);
-    }
-
-    public void SetKeysInstrumentToggle(Toggle toggle)
-    {
-        SetInstrumentToggle(toggle, Song.Instrument.Keys);
-    }
-
-    public void SetDrumsInstrumentToggle(Toggle toggle)
-    {
-        SetInstrumentToggle(toggle, Song.Instrument.Drums);
-    }
-
-    public void SetGHLiveGuitarInstrumentToggle(Toggle toggle)
-    {
-        SetInstrumentToggle(toggle, Song.Instrument.GHLiveGuitar);
-    }
-
-    public void SetGHLiveBassInstrumentToggle(Toggle toggle)
-    {
-        SetInstrumentToggle(toggle, Song.Instrument.GHLiveBass);
-    }
 
     #endregion
 

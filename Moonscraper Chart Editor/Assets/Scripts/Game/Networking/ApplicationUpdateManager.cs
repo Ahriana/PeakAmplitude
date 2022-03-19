@@ -7,12 +7,12 @@ using Octokit;
 public class ApplicationUpdateManager
 {
 #if UNITY_EDITOR
-    readonly string productHeader = "MoonscraperChartEditor_Dev";
+    readonly string productHeader = "PeakAmplitude_Dev";
 #else
-    readonly string productHeader = "MoonscraperChartEditor";
+    readonly string productHeader = "PeakAmplitude";
 #endif
-    readonly string respositoryOwner = "FireFox2000000";
-    readonly string repositoryName = "Moonscraper-Chart-Editor";
+    readonly string respositoryOwner = "Ahriana";
+    readonly string repositoryName = "PeakAmplitude";
 
     public string currentVersion { get; private set; }
     public bool UpdateCheckInProgress { get; private set; }
@@ -26,6 +26,7 @@ public class ApplicationUpdateManager
 
     public async void CheckForUpdates(OnUpdateFoundFn onUpdateFoundCallback, bool allowPreleases = false)
     {
+        Debug.Log("Checking for updates");
         if (UpdateCheckInProgress)
         {
             Debug.LogError("Trying to check for an update when checking is already in progress.");

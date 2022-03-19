@@ -9,17 +9,15 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Text))]
 public class ProgramInformationPopulate : MonoBehaviour {
     Text programInfoText;
-    const string c_linuxFunctionalityAuthor = "bmwalters (https://github.com/bmwalters)";
 
 	// Use this for initialization
 	void Start () {
         programInfoText = GetComponent<Text>();
 
-        programInfoText.text = string.Format("{0} v{1} {2} \nBy Alexander \"FireFox\" Ong.\n\nBuilt using Unity {3}.\n\nLinux build functionality provided by {4}", 
+        programInfoText.text = string.Format("{0} v{1} {2} \n\nBuilt on Moonscraper 1.4.3.4\nBy Alexander \"FireFox\" Ong.\n\nModified for use with Amplitude by \"Ahriana\"\n\nBuilt using Unity {3}", 
             Application.productName, 
             Application.version, 
             Globals.applicationBranchName, 
-            Application.unityVersion,
-            c_linuxFunctionalityAuthor);
+            Application.unityVersion);
     }
 }

@@ -42,7 +42,7 @@ namespace MoonscraperChartEditor.Song
 
                 exportOptions.forced = true;
                 exportOptions.copyDownEmptyDifficulty = false;
-                exportOptions.format = IO.ExportOptions.Format.Chart;
+                exportOptions.format = IO.ExportOptions.Format.Midi;
                 exportOptions.targetResolution = this.resolution;
                 exportOptions.tickOffset = 0;
                 exportOptions.isGeneralSave = false;
@@ -125,29 +125,23 @@ namespace MoonscraperChartEditor.Song
                 string instrumentName = string.Empty;
                 switch (instrument)
                 {
-                    case (Instrument.Guitar):
-                        instrumentName += "Guitar - ";
+                    case (Instrument.Amp1):
+                        instrumentName += "Amplitude Lane 1";
                         break;
-                    case (Instrument.GuitarCoop):
-                        instrumentName += "Guitar - Co-op - ";
+                    case (Instrument.Amp2):
+                        instrumentName += "Amplitude Lane 2";
                         break;
-                    case (Instrument.Bass):
-                        instrumentName += "Bass - ";
+                    case (Instrument.Amp3):
+                        instrumentName += "Amplitude Lane 3";
                         break;
-                    case (Instrument.Rhythm):
-                        instrumentName += "Rhythm - ";
+                    case (Instrument.Amp4):
+                        instrumentName += "Amplitude Lane 4";
                         break;
-                    case (Instrument.Keys):
-                        instrumentName += "Keys - ";
+                    case (Instrument.Amp5):
+                        instrumentName += "Amplitude Lane 5";
                         break;
-                    case (Instrument.Drums):
-                        instrumentName += "Drums - ";
-                        break;
-                    case (Instrument.GHLiveGuitar):
-                        instrumentName += "GHLive Guitar - ";
-                        break;
-                    case (Instrument.GHLiveBass):
-                        instrumentName += "GHLive Bass - ";
+                    case (Instrument.Amp6):
+                        instrumentName += "Amplitude Lane 6";
                         break;
                     default:
                         continue;
@@ -497,19 +491,13 @@ namespace MoonscraperChartEditor.Song
         {
             switch (instrument)
             {
-                case (Instrument.Guitar):
-                case (Instrument.GuitarCoop):
-                case (Instrument.Bass):
-                case (Instrument.Rhythm):
-                case (Instrument.Keys):
-                    return Chart.GameMode.Guitar;
-
-                case (Instrument.Drums):
-                    return Chart.GameMode.Drums;
-
-                case (Instrument.GHLiveGuitar):
-                case (Instrument.GHLiveBass):
-                    return Chart.GameMode.GHLGuitar;
+                case (Instrument.Amp1):
+                case (Instrument.Amp2):
+                case (Instrument.Amp3):
+                case (Instrument.Amp4):
+                case (Instrument.Amp5):
+                case (Instrument.Amp6):
+                    return Chart.GameMode.Amplitude;
 
                 default:
                     break;
@@ -528,14 +516,12 @@ namespace MoonscraperChartEditor.Song
 
         public enum Instrument
         {
-            Guitar = 0,
-            GuitarCoop = 1,
-            Bass = 2,
-            Rhythm = 3,
-            Keys = 4,
-            Drums = 5,
-            GHLiveGuitar = 6,
-            GHLiveBass = 7,
+            Amp1 = 0,
+            Amp2 = 1,
+            Amp3 = 2,
+            Amp4 = 3,
+            Amp5 = 4,
+            Amp6 = 5,
             Unrecognised = 99,
         }
 

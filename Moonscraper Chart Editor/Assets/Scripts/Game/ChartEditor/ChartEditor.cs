@@ -150,6 +150,8 @@ public class ChartEditor : UnitySingleton<ChartEditor>
     // Use this for initialization
     void Awake () {
         windowHandleManager = new WindowHandleManager(string.Format("{0} v{1} {2}", Application.productName, Application.version, Globals.applicationBranchName), GetComponent<Settings>().productName);
+
+        // ERROR HANDLER COMMENT
         Application.logMessageReceived += HandleException;
 
         Debug.Log(string.Format("Initialising {0} v{1}", Application.productName, Application.version));
@@ -292,7 +294,7 @@ public class ChartEditor : UnitySingleton<ChartEditor>
     {
         if (type == LogType.Exception && !_ignoreExceptions)
         {
-            string message = string.Format("Moonscraper Chart Editor has encounted an unexpected error:\n\n{0}\n{1}\nPlease report \"AppData\\LocalLow\\FireFox Dev\\Moonscraper Chart Editor\\output_log.txt\" to your local Moonscraper developer at your earliest convienance.\n\nAttempt to continue?", condition, stackTrace);
+            string message = string.Format("PeakAmplitude has encounted an unexpected error:\n\n{0}\n{1}\nPlease report \"AppData\\LocalLow\\Ahriana\\PeakAmplitude\\output_log.txt\" to your local Moonscraper developer at your earliest convienance.\n\nAttempt to continue?", condition, stackTrace);
             NativeMessageBox.Result result = NativeMessageBox.Show(message, "Oops", NativeMessageBox.Type.YesNo, windowHandleManager.nativeWindow);
 
             switch (result)
@@ -693,18 +695,6 @@ public class ChartEditor : UnitySingleton<ChartEditor>
                 events.saveEvent.Fire();
 
             isDirty = false;
-
-            if (Globals.gameSettings.autoValidateSongOnSave)
-            {
-                bool hasErrors;
-                SongValidate.ValidationParameters validateParams = new SongValidate.ValidationParameters() { songLength = currentSongLength, checkMidiIssues = false, };
-                SongValidate.GenerateReport(Globals.gameSettings.songValidatorModes, currentSong, validateParams, out hasErrors);
-
-                if (hasErrors)
-                {
-                    EnableMenu(uiServices.gameObject.GetComponentInChildren<ValidationMenu>(true));
-                }
-            }
         }
     }
 
@@ -746,6 +736,7 @@ public class ChartEditor : UnitySingleton<ChartEditor>
                 }
                 catch (Exception e)
                 {
+                    Debug.LogException(e);
                     currentSong = backup;
 
                     if (mid)
@@ -883,13 +874,13 @@ public class ChartEditor : UnitySingleton<ChartEditor>
 
         if (awake)
         {
-            MenuBar.currentInstrument = Song.Instrument.Guitar;
+            MenuBar.currentInstrument = Song.Instrument.Amp1;
             MenuBar.currentDifficulty = Song.Difficulty.Expert;
         }
         else
         {
             
-            menuBar.SetInstrument("guitar");
+            menuBar.SetInstrument("Amp1");
             menuBar.SetDifficulty("expert");
         }
 

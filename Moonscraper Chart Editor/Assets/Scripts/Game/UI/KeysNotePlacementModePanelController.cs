@@ -23,10 +23,16 @@ public class KeysNotePlacementModePanelController : MonoBehaviour {
         // Shortcuts
         if (!Services.IsTyping && !Globals.modifierInputActive)
         {
-            if (MSChartEditorInput.GetInputDown(MSChartEditorInputActions.ToolNoteHold))
-                buttons[0].onClick.Invoke();
-            else if (MSChartEditorInput.GetInputDown(MSChartEditorInputActions.ToolNoteBurst))
+            // if (MSChartEditorInput.GetInputDown(MSChartEditorInputActions.ToolNoteHold))
+            //     buttons[0].onClick.Invoke();
+            // else if (MSChartEditorInput.GetInputDown(MSChartEditorInputActions.ToolNoteBurst))
+            //     buttons[1].onClick.Invoke();
+
+            if (MSChartEditorInput.GetInputDown(MSChartEditorInputActions.ToolNoteBurst))
+            {
                 buttons[1].onClick.Invoke();
+            }
+                
         }
     }
 

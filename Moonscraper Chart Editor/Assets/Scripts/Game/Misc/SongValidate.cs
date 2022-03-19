@@ -28,26 +28,6 @@ public class SongValidate
         return time.ToString("mm':'ss'.'ff");
     }
 
-    public static string GenerateReport(ValidationOptions validationOptions, Song song, ValidationParameters validationParams, out bool hasErrors)
-    {
-        StringBuilder sb = new StringBuilder();
-        hasErrors = false;
-
-        sb.AppendFormat("{0}\n", CheckForErrorsMoonscraper(song, validationParams, ref hasErrors));
-
-        if ((validationOptions & ValidationOptions.GuitarHero3) != 0)
-        {
-            sb.AppendFormat("{0}\n", CheckForErrorsGuitarHero3(song, validationParams, ref hasErrors));
-        }
-
-        if ((validationOptions & ValidationOptions.CloneHero) != 0)
-        {
-            sb.AppendFormat("{0}\n", CheckForErrorsCloneHero(song, validationParams, ref hasErrors));
-        }
-
-        return sb.ToString();
-    }
-
     static string CheckForErrorsMoonscraper(Song song, ValidationParameters validationParams, ref bool hasErrors)
     {
         bool hasErrorsLocal = false;

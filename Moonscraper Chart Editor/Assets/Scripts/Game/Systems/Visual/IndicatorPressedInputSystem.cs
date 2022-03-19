@@ -26,11 +26,6 @@ public class IndicatorPressedInputSystem : SystemManagerState.System
 
         switch (gameMode)
         {
-            case Chart.GameMode.Drums:
-                {
-                    updateFn = UpdateDrumPadPresses;
-                    break;
-                }
             default:
                 {
                     updateFn = UpdateGuitarFretPresses;

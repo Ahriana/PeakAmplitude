@@ -22,12 +22,6 @@ public static class GuitarInput
             case Note.GuitarFret.Yellow:
                 return MSChartEditorInput.GetInput(MSChartEditorInputActions.GuitarFretYellow);
 
-            case Note.GuitarFret.Blue:
-                return MSChartEditorInput.GetInput(MSChartEditorInputActions.GuitarFretBlue);
-
-            case Note.GuitarFret.Orange:
-                return MSChartEditorInput.GetInput(MSChartEditorInputActions.GuitarFretOrange);
-
             case Note.GuitarFret.Open:
                 return false;
 
@@ -59,7 +53,6 @@ public static class GuitarInput
 
     public static float GetWhammyInput()
     {
-        float? whammyValue = MSChartEditorInput.GetAxisMaybe(MSChartEditorInputActions.Whammy);
-        return whammyValue.HasValue ? whammyValue.Value : kNoWhammy;
+        return 0f;
     }
 }

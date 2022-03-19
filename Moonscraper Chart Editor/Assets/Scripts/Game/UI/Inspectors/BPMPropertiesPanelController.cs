@@ -203,11 +203,17 @@ public class BPMPropertiesPanelController : PropertiesPanelController {
 
     public char validatePositiveDecimal(string text, int charIndex, char addedChar)
     {
+        
+
         int selectionLength = Mathf.Abs(bpmValue.selectionAnchorPosition - bpmValue.selectionFocusPosition);
         int selectStart = bpmValue.selectionAnchorPosition < bpmValue.selectionFocusPosition ? bpmValue.selectionAnchorPosition : bpmValue.selectionFocusPosition;
 
-        if (selectStart < bpmValue.text.Length)
-            text = text.Remove(selectStart, selectionLength);
+        if (!string.IsNullOrEmpty(text)) { 
+            if (selectStart < bpmValue.text.Length)
+            {
+                text = text.Remove(selectStart, selectionLength);
+            }
+        }
 
         if ((addedChar == c_decimal && !text.Contains(c_decimal) && text.Length > 0) || (addedChar >= '0' && addedChar <= '9'))
         {

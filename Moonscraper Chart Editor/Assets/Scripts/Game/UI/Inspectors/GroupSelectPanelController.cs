@@ -42,15 +42,12 @@ public class GroupSelectPanelController : MonoBehaviour
 
         // Setup lane selector dictionaries and hide all selector varients
         {
-            laneSelectForGamemodeLookup[Chart.GameMode.Guitar] = fretSelectDropdown;
-            laneSelectForGamemodeLookup[Chart.GameMode.Drums] = drumsFretSelectDropdown;
-            laneSelectForGamemodeLookup[Chart.GameMode.GHLGuitar] = ghlFretSelectDropdown;
+            laneSelectForGamemodeLookup[Chart.GameMode.Amplitude] = fretSelectDropdown;
 
             var drumsOverrideLaneSelectDict = new Dictionary<int, Dropdown>();
             drumsOverrideLaneSelectDict[4] = drums4LaneSelectDropdown;
-            laneSelectLaneCountOverrideLookup[Chart.GameMode.Drums] = drumsOverrideLaneSelectDict;
 
-            currentFretSelector = laneSelectForGamemodeLookup[Chart.GameMode.Guitar];
+            currentFretSelector = laneSelectForGamemodeLookup[Chart.GameMode.Amplitude];
 
             foreach (var dropKeyVal in laneSelectForGamemodeLookup)
             {
@@ -119,16 +116,16 @@ public class GroupSelectPanelController : MonoBehaviour
 
     void Shortcuts()
     {
-        if (MSChartEditorInput.GetInputDown(MSChartEditorInputActions.NoteSetNatural))
-            setNoteNatural.onClick.Invoke();
-        else if (MSChartEditorInput.GetInputDown(MSChartEditorInputActions.NoteSetStrum))
-            setNoteStrum.onClick.Invoke();
-        else if (MSChartEditorInput.GetInputDown(MSChartEditorInputActions.NoteSetHopo))
-            setNoteHopo.onClick.Invoke();
-        else if (MSChartEditorInput.GetInputDown(MSChartEditorInputActions.NoteSetTap))
-            setNoteTap.onClick.Invoke();
-        else if (MSChartEditorInput.GetInputDown(MSChartEditorInputActions.NoteSetCymbal))
-            setNoteCymbal.onClick.Invoke();
+        // if (MSChartEditorInput.GetInputDown(MSChartEditorInputActions.NoteSetNatural))
+        //     setNoteNatural.onClick.Invoke();
+        // else if (MSChartEditorInput.GetInputDown(MSChartEditorInputActions.NoteSetStrum))
+        //     setNoteStrum.onClick.Invoke();
+        // else if (MSChartEditorInput.GetInputDown(MSChartEditorInputActions.NoteSetHopo))
+        //     setNoteHopo.onClick.Invoke();
+        // else if (MSChartEditorInput.GetInputDown(MSChartEditorInputActions.NoteSetTap))
+        //     setNoteTap.onClick.Invoke();
+        // else if (MSChartEditorInput.GetInputDown(MSChartEditorInputActions.NoteSetCymbal))
+        //     setNoteCymbal.onClick.Invoke();
     }
 
     int GetOpenNoteForGameMode(Chart.GameMode gameMode)
@@ -136,19 +133,9 @@ public class GroupSelectPanelController : MonoBehaviour
         int rawNoteValue = 0;
         switch (gameMode)
         {
-            case Chart.GameMode.Guitar:
+            case Chart.GameMode.Amplitude:
                 {
                     rawNoteValue = (int)Note.GuitarFret.Open;
-                    break;
-                }
-            case Chart.GameMode.Drums:
-                {
-                    rawNoteValue = (int)Note.DrumPad.Kick;
-                    break;
-                }
-            case Chart.GameMode.GHLGuitar:
-                {
-                    rawNoteValue = (int)Note.GHLiveGuitarFret.Open;
                     break;
                 }
             default:

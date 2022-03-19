@@ -48,16 +48,14 @@ public class PlaceNoteController : ObjectlessTool {
         MSChartEditorInputActions.ToolNoteLane1,
         MSChartEditorInputActions.ToolNoteLane2,
         MSChartEditorInputActions.ToolNoteLane3,
-        MSChartEditorInputActions.ToolNoteLane4,
-        MSChartEditorInputActions.ToolNoteLane5,
-        MSChartEditorInputActions.ToolNoteLane6,
     };
 
     MSChartEditorInputActions GetInputForNoteIndex(int index, int laneCount)
     {
         if (index >= laneCount)
         {
-            return MSChartEditorInputActions.ToolNoteLaneOpen;
+            throw new System.Exception("this did something which dont exist anymore");
+            // return MSChartEditorInputActions.ToolNoteLaneOpen;
         }
 
         return NumToLaneActionLUT[index];
@@ -332,13 +330,13 @@ public class PlaceNoteController : ObjectlessTool {
             {
                 int notePos = i;
 
-                if (MSChartEditorInput.GetInputDown(MSChartEditorInputActions.ToolNoteLaneOpen))
-                {
-                    if (openNotesBanned)     // Ban conflicting inputs as the command stack REALLY doesn't like this.
-                        continue;
-
-                    notePos = allPlaceableNotes.IndexOf(openNote);
-                }
+                // if (MSChartEditorInput.GetInputDown(MSChartEditorInputActions.ToolNoteLaneOpen))
+                // {
+                //     if (openNotesBanned)     // Ban conflicting inputs as the command stack REALLY doesn't like this.
+                //         continue;
+                // 
+                //     notePos = allPlaceableNotes.IndexOf(openNote);
+                // }
 
                 LeftyFlipReflectionCheck(ref notePos, laneCount);
 
@@ -437,41 +435,42 @@ public class PlaceNoteController : ObjectlessTool {
         }
 
         // Select which notes to run based on keyboard input
-        if (MSChartEditorInput.GetInputDown(MSChartEditorInputActions.ToolNoteLaneOpen))  // Open note takes priority
-        {
-            if (openActive)
-            {
-                multiNote.gameObject.SetActive(true);
-                activeNotes.Add(multiNote);
-            }
-            else
-            {
-                openNote.gameObject.SetActive(true);
-                activeNotes.Add(openNote);
-            }
-        }
-        else if (!MSChartEditorInput.GetInput(MSChartEditorInputActions.ToolNoteLaneOpen) && (anyStandardKeyInput))
-        {
-            for (int i = 0; i < maxLanes; ++i)
-            {
-                int leftyPos = maxLanes - (i + 1);
-
-                if (MSChartEditorInput.GetInput(NumToLaneActionLUT[i]))
-                {
-                    if (Globals.gameSettings.notePlacementMode == GameSettings.NotePlacementMode.LeftyFlip)
-                    {
-                        standardPlaceableNotes[leftyPos].gameObject.SetActive(true);
-                        activeNotes.Add(standardPlaceableNotes[leftyPos]);
-                    }
-                    else
-                    {
-                        standardPlaceableNotes[i].gameObject.SetActive(true);
-                        activeNotes.Add(standardPlaceableNotes[i]);
-                    }
-                }
-            }
-        }
-        else if (openActive)
+        // if (MSChartEditorInput.GetInputDown(MSChartEditorInputActions.ToolNoteLaneOpen))  // Open note takes priority
+        // {
+        //     if (openActive)
+        //     {
+        //         multiNote.gameObject.SetActive(true);
+        //         activeNotes.Add(multiNote);
+        //     }
+        //     else
+        //     {
+        //         openNote.gameObject.SetActive(true);
+        //         activeNotes.Add(openNote);
+        //     }
+        // }
+        // else if (!MSChartEditorInput.GetInput(MSChartEditorInputActions.ToolNoteLaneOpen) && (anyStandardKeyInput))
+        // {
+        //     for (int i = 0; i < maxLanes; ++i)
+        //     {
+        //         int leftyPos = maxLanes - (i + 1);
+        // 
+        //         if (MSChartEditorInput.GetInput(NumToLaneActionLUT[i]))
+        //         {
+        //             if (Globals.gameSettings.notePlacementMode == GameSettings.NotePlacementMode.LeftyFlip)
+        //             {
+        //                 standardPlaceableNotes[leftyPos].gameObject.SetActive(true);
+        //                 activeNotes.Add(standardPlaceableNotes[leftyPos]);
+        //             }
+        //             else
+        //             {
+        //                 standardPlaceableNotes[i].gameObject.SetActive(true);
+        //                 activeNotes.Add(standardPlaceableNotes[i]);
+        //             }
+        //         }
+        //     }
+        // }
+        // else if (openActive)
+        if (openActive)
         {
             openNote.gameObject.SetActive(true);
             activeNotes.Add(openNote);
@@ -665,7 +664,7 @@ public class PlaceNoteController : ObjectlessTool {
 
         flags = desiredFlags;
 
-        bool drumsMode = editor.currentGameMode == Chart.GameMode.Drums;
+        bool drumsMode = false;
 
         if (!forcedInteractable && gameObject.activeSelf)
         {

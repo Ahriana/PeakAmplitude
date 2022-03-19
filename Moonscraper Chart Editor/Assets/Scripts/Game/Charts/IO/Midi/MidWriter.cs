@@ -49,32 +49,30 @@ namespace MoonscraperChartEditor.Song.IO
 
         static readonly Dictionary<Song.Instrument, string> c_instrumentToTrackNameDict = new Dictionary<Song.Instrument, string>()
     {
-        { Song.Instrument.Guitar,           MidIOHelper.GUITAR_TRACK },
-        { Song.Instrument.GuitarCoop,       MidIOHelper.GUITAR_COOP_TRACK },
-        { Song.Instrument.Bass,             MidIOHelper.BASS_TRACK },
-        { Song.Instrument.Rhythm,           MidIOHelper.RHYTHM_TRACK },
-        { Song.Instrument.Keys,             MidIOHelper.KEYS_TRACK },
-        { Song.Instrument.Drums,            MidIOHelper.DRUMS_TRACK },
-        { Song.Instrument.GHLiveGuitar,     MidIOHelper.GHL_GUITAR_TRACK },
-        { Song.Instrument.GHLiveBass,       MidIOHelper.GHL_BASS_TRACK },
+        { Song.Instrument.Amp1,             MidIOHelper.Amp1_TRACK },
+        { Song.Instrument.Amp2,             MidIOHelper.Amp2_TRACK },
+        { Song.Instrument.Amp3,             MidIOHelper.Amp3_TRACK },
+        { Song.Instrument.Amp4,             MidIOHelper.Amp4_TRACK },
+        { Song.Instrument.Amp5,             MidIOHelper.Amp5_TRACK },
+        { Song.Instrument.Amp6,             MidIOHelper.Amp6_TRACK }
     };
 
         static readonly Dictionary<Song.Difficulty, int> c_difficultyToMidiNoteWriteDict = new Dictionary<Song.Difficulty, int>()
     {
-        { Song.Difficulty.Easy,             60 },
-        { Song.Difficulty.Medium,           72 },
-        { Song.Difficulty.Hard,             84 },
-        { Song.Difficulty.Expert,           96 },
+        { Song.Difficulty.Easy,             96 },
+        { Song.Difficulty.Medium,           102 },
+        { Song.Difficulty.Hard,             108 },
+        { Song.Difficulty.Expert,           114 },
     };
 
         static readonly Dictionary<int, int> c_guitarNoteMidiWriteOffsets = new Dictionary<int, int>()
     {
         { (int)Note.GuitarFret.Open,     0},     // Gets replaced by an sysex event
         { (int)Note.GuitarFret.Green,    0},
-        { (int)Note.GuitarFret.Red,      1},
-        { (int)Note.GuitarFret.Yellow,   2},
-        { (int)Note.GuitarFret.Blue,     3},
-        { (int)Note.GuitarFret.Orange,   4},
+        { (int)Note.GuitarFret.Red,      2},
+        { (int)Note.GuitarFret.Yellow,   4},
+        { (int)Note.GuitarFret.Blue,     6},
+        { (int)Note.GuitarFret.Orange,   8},
     };
 
         static readonly Dictionary<int, int> c_drumNoteMidiWriteOffsets = new Dictionary<int, int>()
@@ -100,9 +98,7 @@ namespace MoonscraperChartEditor.Song.IO
 
         static readonly Dictionary<Chart.GameMode, Dictionary<int, int>> c_gameModeNoteWriteOffsetDictLookup = new Dictionary<Chart.GameMode, Dictionary<int, int>>()
     {
-        { Chart.GameMode.Guitar,    c_guitarNoteMidiWriteOffsets },
-        { Chart.GameMode.Drums,     c_drumNoteMidiWriteOffsets },
-        { Chart.GameMode.GHLGuitar, c_ghlNoteMidiWriteOffsets },
+        { Chart.GameMode.Amplitude,    c_guitarNoteMidiWriteOffsets },
     };
 
         static readonly Dictionary<Note.NoteType, int> c_forcingMidiWriteOffsets = new Dictionary<Note.NoteType, int>()
@@ -522,18 +518,6 @@ namespace MoonscraperChartEditor.Song.IO
 
                     byte velocity = VELOCITY;
 
-                    if (gameMode == Chart.GameMode.Drums)
-                    {
-                        if (note.flags.HasFlag(Note.Flags.ProDrums_Accent))
-                        {
-                            velocity = MidIOHelper.VELOCITY_ACCENT;
-                        }
-                        else if (note.flags.HasFlag(Note.Flags.ProDrums_Ghost))
-                        {
-                            velocity = MidIOHelper.VELOCITY_GHOST;
-                        }
-                    }
-
                     GetNoteNumberBytes(noteNumber, note, velocity, out onEvent, out offEvent);
 
                     if (exportOptions.forced)
@@ -565,20 +549,7 @@ namespace MoonscraperChartEditor.Song.IO
 
                         if (writeGlobalTrackEvents)
                         {
-                            if (instrument == Song.Instrument.Drums && ((noteFlags & Note.Flags.ProDrums_Cymbal) == 0))     // We want to write our flags if the cymbal is toggled OFF, as these notes are cymbals by default
-                            {
-                                int tomToggleNoteNumber;
-                                if (MidIOHelper.PAD_TO_CYMBAL_LOOKUP.TryGetValue(note.drumPad, out tomToggleNoteNumber))
-                                {
-                                    SortableBytes tomToggleOnEvent = new SortableBytes(note.tick, new byte[] { ON_EVENT, (byte)tomToggleNoteNumber, VELOCITY });
-                                    SortableBytes tomToggleOffEvent = new SortableBytes(note.tick + 1, new byte[] { OFF_EVENT, (byte)tomToggleNoteNumber, VELOCITY });
-
-                                    InsertionSort(eventList, tomToggleOnEvent);
-                                    InsertionSort(eventList, tomToggleOffEvent);
-                                }
-                            }
-
-                            int openNote = gameMode == Chart.GameMode.GHLGuitar ? (int)Note.GHLiveGuitarFret.Open : (int)Note.GuitarFret.Open;
+                            int openNote = (int)Note.GuitarFret.Open;
                             // Add tap sysex events
                             bool isStartOfTapRange = note.rawNote != openNote && (noteFlags & Note.Flags.Tap) != 0 && (note.previous == null || (note.previous.flags & Note.Flags.Tap) == 0);
                             if (isStartOfTapRange)  // This note is a tap while the previous one isn't as we're creating a range
@@ -601,7 +572,7 @@ namespace MoonscraperChartEditor.Song.IO
                         }
                     }
 
-                    if (gameMode != Chart.GameMode.Drums && gameMode != Chart.GameMode.GHLGuitar && note.guitarFret == Note.GuitarFret.Open && (note.previous == null || (note.previous.guitarFret != Note.GuitarFret.Open)))
+                    if (note.guitarFret == Note.GuitarFret.Open && (note.previous == null || (note.previous.guitarFret != Note.GuitarFret.Open)))
                     {
                         // Find the next non-open note
                         Note nextNonOpen = note;
@@ -987,12 +958,6 @@ namespace MoonscraperChartEditor.Song.IO
             Dictionary<int, int> noteToMidiOffsetDict;
             int difficultyNumber;
             int offset;
-
-            // Double kick, ala instrument+, kinda hacky
-            if (gameMode == Chart.GameMode.Drums && (note.flags & Note.Flags.DoubleKick) != 0 && NoteFunctions.AllowedToBeDoubleKick(note, difficulty))
-            {
-                return MidIOHelper.DOUBLE_KICK_NOTE;
-            }
 
             if (!c_gameModeNoteWriteOffsetDictLookup.TryGetValue(gameMode, out noteToMidiOffsetDict))
                 throw new System.Exception("Unhandled game mode, unable to get offset dictionary");

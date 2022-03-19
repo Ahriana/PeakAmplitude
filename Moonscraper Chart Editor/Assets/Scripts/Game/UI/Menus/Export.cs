@@ -53,7 +53,7 @@ public class Export : DisplayMenu {
 
     void Start()
     {
-        setAsChartFile();
+        setAsMidFile();
     }
 
     protected override void OnEnable()
@@ -226,19 +226,6 @@ public class Export : DisplayMenu {
 
         Debug.Log("Total exporting time: " + (Time.realtimeSinceStartup - timer));
 
-        if (exportOptions.format == ExportOptions.Format.Midi)
-        {
-            bool hasErrors;
-            SongValidate.ValidationParameters validateParams = new SongValidate.ValidationParameters() { songLength = editor.currentSongLength, checkMidiIssues = true, };
-            string validationErrors = SongValidate.GenerateReport(SongValidate.ValidationOptions.CloneHero, editor.currentSong, validateParams, out hasErrors);
-
-            if (hasErrors)
-            {
-                errorMessageList += '\n';
-                errorMessageList += validationErrors;
-            }
-        }
-
         if (errorMessageList != string.Empty)
         {
             Disable();
@@ -265,7 +252,7 @@ public class Export : DisplayMenu {
                 break;
             case 0:
             default:
-                setAsChartFile();
+                setAsMidFile();
                 break;
         }
     }

@@ -190,13 +190,9 @@ public class GameplayStateSystem : SystemManagerState.System
         {
             return GameplayType.Bot;
         }
-        else if (gameMode == Chart.GameMode.Guitar)
+        else if (gameMode == Chart.GameMode.Amplitude)
         {
             return GameplayType.Guitar;
-        }
-        else if (gameMode == Chart.GameMode.Drums)
-        {
-            return GameplayType.Drums;
         }
 
         return GameplayType.None;

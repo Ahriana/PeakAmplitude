@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Text;
 
 public class BuildManager  {
-    const string applicationName = "Moonscraper Chart Editor";
+    const string applicationName = "PeakAmplitude";
 
     // TODO - Need to figure out a way not to hardcode these paths. Could embed them directly but dlls seem unnessacary when this is already working anyway. 
     const string CompressionProgramPath = "E:\\Program Files\\7-Zip\\7z.exe";

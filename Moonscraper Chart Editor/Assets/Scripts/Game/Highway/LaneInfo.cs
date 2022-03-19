@@ -18,34 +18,25 @@ public class LaneInfo : MonoBehaviour {
     Dictionary<Chart.GameMode, int[]> standardGamemodePaletteMap;
     Dictionary<Chart.GameMode, Dictionary<int, int[]>> laneCountPaletteMapOverrides;
 
-    int m_laneCount = 5;
+    int m_laneCount = 3;
     Dictionary<Chart.GameMode, int> standardGamemodeToLaneCountMap = new Dictionary<Chart.GameMode, int>()
     {
-        { Chart.GameMode.Guitar, 5 },
-        { Chart.GameMode.Drums, 5 },
-        { Chart.GameMode.GHLGuitar, 6 },
+        { Chart.GameMode.Amplitude, 3 },
     };
 
-    public const float positionRangeMin = -2, positionRangeMax = 2;
+    public const float positionRangeMin = -1, positionRangeMax = 1;
 
     // Use this for initialization
     void Start()
     {
         standardGamemodePaletteMap = new Dictionary<Chart.GameMode, int[]>()
         {
-            { Chart.GameMode.Guitar, guitarFretColourMap },
-            { Chart.GameMode.Drums, drumPadColourMap },
-            { Chart.GameMode.GHLGuitar, ghlGuitarFretColourMap },
+            { Chart.GameMode.Amplitude, guitarFretColourMap }
         };
 
         laneCountPaletteMapOverrides = new Dictionary<Chart.GameMode, Dictionary<int, int[]>>()
         {
-            {
-                Chart.GameMode.Drums, new Dictionary<int, int[]>()
-                {
-                    { 4, drumPadColourMap4LaneOverride },
-                }
-            }
+
         };
 
         ChartEditor.Instance.events.leftyFlipToggledEvent.Register(OnLanesUpdated);
@@ -105,11 +96,7 @@ public class LaneInfo : MonoBehaviour {
     void OnLanesUpdated()
     {
         int newLaneCount = -1;
-        if (ChartEditor.Instance.currentGameMode == Chart.GameMode.Drums && laneCount == SongConfig.PRO_DRUMS_LANE_COUNT)
-        {
-            newLaneCount = laneCount;
-        }
-        else if (!standardGamemodeToLaneCountMap.TryGetValue(ChartEditor.Instance.currentGameMode, out newLaneCount))
+        if (!standardGamemodeToLaneCountMap.TryGetValue(ChartEditor.Instance.currentGameMode, out newLaneCount))
         {
             newLaneCount = -1;
         }

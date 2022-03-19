@@ -99,22 +99,20 @@ namespace MoonscraperChartEditor.Song.IO
 
         public static readonly Dictionary<string, Song.Instrument> c_instrumentStrToEnumLookup = new Dictionary<string, Song.Instrument>()
     {
-        { "Single",         Song.Instrument.Guitar },
-        { "DoubleGuitar",   Song.Instrument.GuitarCoop },
-        { "DoubleBass",     Song.Instrument.Bass },
-        { "DoubleRhythm",   Song.Instrument.Rhythm },
-        { "Drums",          Song.Instrument.Drums },
-        { "Keyboard",       Song.Instrument.Keys },
-        { "GHLGuitar",      Song.Instrument.GHLiveGuitar },
-        { "GHLBass",        Song.Instrument.GHLiveBass },
+        { "Amp1",           Song.Instrument.Amp1 },
+        { "Amp2",           Song.Instrument.Amp2 },
+        { "Amp3",           Song.Instrument.Amp3 },
+        { "Amp4",           Song.Instrument.Amp4 },
+        { "Amp5",           Song.Instrument.Amp5 },
+        { "Amp6",           Song.Instrument.Amp6 },
     };
 
         public static readonly Dictionary<Song.Instrument, Song.Instrument> c_instrumentParsingTypeLookup = new Dictionary<Song.Instrument, Song.Instrument>()
     {
         // Other instruments default to loading as a guitar type track
-        { Song.Instrument.Drums,          Song.Instrument.Drums },
-        { Song.Instrument.GHLiveGuitar ,  Song.Instrument.GHLiveGuitar },
-        { Song.Instrument.GHLiveBass ,  Song.Instrument.GHLiveBass },
+        // { Song.Instrument.Drums,          Song.Instrument.Drums },
+        // { Song.Instrument.GHLiveGuitar ,  Song.Instrument.GHLiveGuitar },
+        // { Song.Instrument.GHLiveBass ,  Song.Instrument.GHLiveBass },
     };
 
         public static class MetaData

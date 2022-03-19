@@ -51,7 +51,7 @@ public class ToolPanelController : MonoBehaviour {
         }
 
         keysModePanel.gameObject.SetActive(editor.toolManager.currentToolId == EditorObjectToolManager.ToolID.Note && Globals.gameSettings.keysModeEnabled);
-        mouseModePanel.gameObject.SetActive(editor.toolManager.currentToolId == EditorObjectToolManager.ToolID.Note && !Globals.gameSettings.keysModeEnabled);
+        // mouseModePanel.gameObject.SetActive(editor.toolManager.currentToolId == EditorObjectToolManager.ToolID.Note && !Globals.gameSettings.keysModeEnabled);
 
         Shortcuts();
     }

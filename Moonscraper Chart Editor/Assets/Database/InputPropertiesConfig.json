@@ -210,61 +210,6 @@
             }
         },
         {
-            "mSChartEditorInputAction": "NoteSetNatural",
-            "properties": {
-                "displayName": "Set Note Natural",
-                "rebindable": true,
-                "hiddenInLists": false,
-                "anyDirectionAxis": false,
-                "category": 7,
-                "allowSameFrameMultiInput": false
-            }
-        },
-        {
-            "mSChartEditorInputAction": "NoteSetStrum",
-            "properties": {
-                "displayName": "Set Note As Strum",
-                "rebindable": true,
-                "hiddenInLists": false,
-                "anyDirectionAxis": false,
-                "category": 7,
-                "allowSameFrameMultiInput": false
-            }
-        },
-        {
-            "mSChartEditorInputAction": "NoteSetHopo",
-            "properties": {
-                "displayName": "Set Note As HOPO",
-                "rebindable": true,
-                "hiddenInLists": false,
-                "anyDirectionAxis": false,
-                "category": 7,
-                "allowSameFrameMultiInput": false
-            }
-        },
-        {
-            "mSChartEditorInputAction": "NoteSetTap",
-            "properties": {
-                "displayName": "Set Note As Tap",
-                "rebindable": true,
-                "hiddenInLists": false,
-                "anyDirectionAxis": false,
-                "category": 7,
-                "allowSameFrameMultiInput": false
-            }
-        },
-        {
-            "mSChartEditorInputAction": "NoteSetCymbal",
-            "properties": {
-                "displayName": "Set Note As Cymbal",
-                "rebindable": true,
-                "hiddenInLists": false,
-                "anyDirectionAxis": false,
-                "category": 1,
-                "allowSameFrameMultiInput": false
-            }
-        },
-        {
             "mSChartEditorInputAction": "PlayPause",
             "properties": {
                 "displayName": "Play/Pause",
@@ -408,17 +353,6 @@
             }
         },
         {
-            "mSChartEditorInputAction": "ToggleExtendedSustains",
-            "properties": {
-                "displayName": "Toggle Extended Sustains",
-                "rebindable": true,
-                "hiddenInLists": false,
-                "anyDirectionAxis": false,
-                "category": 1,
-                "allowSameFrameMultiInput": false
-            }
-        },
-        {
             "mSChartEditorInputAction": "ToggleMetronome",
             "properties": {
                 "displayName": "Toggle Metronome",
@@ -441,61 +375,6 @@
             }
         },
         {
-            "mSChartEditorInputAction": "ToggleNoteForced",
-            "properties": {
-                "displayName": "Toggle Note Forced",
-                "rebindable": true,
-                "hiddenInLists": false,
-                "anyDirectionAxis": false,
-                "category": 3,
-                "allowSameFrameMultiInput": false
-            }
-        },
-        {
-            "mSChartEditorInputAction": "ToggleNoteTap",
-            "properties": {
-                "displayName": "Toggle Note Tap",
-                "rebindable": true,
-                "hiddenInLists": false,
-                "anyDirectionAxis": false,
-                "category": 3,
-                "allowSameFrameMultiInput": false
-            }
-        },
-        {
-            "mSChartEditorInputAction": "ToggleNoteCymbal",
-            "properties": {
-                "displayName": "Toggle Note Cymbal",
-                "rebindable": true,
-                "hiddenInLists": false,
-                "anyDirectionAxis": false,
-                "category": 3,
-                "allowSameFrameMultiInput": false
-            }
-        },
-        {
-            "mSChartEditorInputAction": "ToggleNoteDoubleKick",
-            "properties": {
-                "displayName": "Toggle Note Double Kick",
-                "rebindable": true,
-                "hiddenInLists": false,
-                "anyDirectionAxis": false,
-                "category": 3,
-                "allowSameFrameMultiInput": false
-            }
-        },
-        {
-            "mSChartEditorInputAction": "ToggleStarpowerDrumsFillActivation",
-            "properties": {
-                "displayName": "Toggle Starpower Drums Fill Activation",
-                "rebindable": true,
-                "hiddenInLists": false,
-                "anyDirectionAxis": false,
-                "category": 8,
-                "allowSameFrameMultiInput": false
-            }
-        },
-        {
             "mSChartEditorInputAction": "ToggleViewMode",
             "properties": {
                 "displayName": "Toggle View Mode",
@@ -510,17 +389,6 @@
             "mSChartEditorInputAction": "ToolNoteBurst",
             "properties": {
                 "displayName": "Note Tool Burst Mode (Keys)",
-                "rebindable": true,
-                "hiddenInLists": false,
-                "anyDirectionAxis": false,
-                "category": 1,
-                "allowSameFrameMultiInput": false
-            }
-        },
-        {
-            "mSChartEditorInputAction": "ToolNoteHold",
-            "properties": {
-                "displayName": "Note Tool Sustain Mode (Keys)",
                 "rebindable": true,
                 "hiddenInLists": false,
                 "anyDirectionAxis": false,
@@ -554,17 +422,6 @@
             "mSChartEditorInputAction": "ToolSelectNote",
             "properties": {
                 "displayName": "Select Note Tool",
-                "rebindable": true,
-                "hiddenInLists": false,
-                "anyDirectionAxis": false,
-                "category": 1,
-                "allowSameFrameMultiInput": false
-            }
-        },
-        {
-            "mSChartEditorInputAction": "ToolSelectStarpower",
-            "properties": {
-                "displayName": "Select Starpower Tool",
                 "rebindable": true,
                 "hiddenInLists": false,
                 "anyDirectionAxis": false,
@@ -650,50 +507,6 @@
             }
         },
         {
-            "mSChartEditorInputAction": "ToolNoteLane4",
-            "properties": {
-                "displayName": "Note Tool Lane 4",
-                "rebindable": true,
-                "hiddenInLists": false,
-                "anyDirectionAxis": false,
-                "category": 3,
-                "allowSameFrameMultiInput": false
-            }
-        },
-        {
-            "mSChartEditorInputAction": "ToolNoteLane5",
-            "properties": {
-                "displayName": "Note Tool Lane 5",
-                "rebindable": true,
-                "hiddenInLists": false,
-                "anyDirectionAxis": false,
-                "category": 3,
-                "allowSameFrameMultiInput": false
-            }
-        },
-        {
-            "mSChartEditorInputAction": "ToolNoteLane6",
-            "properties": {
-                "displayName": "Note Tool Lane 6",
-                "rebindable": true,
-                "hiddenInLists": false,
-                "anyDirectionAxis": false,
-                "category": 3,
-                "allowSameFrameMultiInput": false
-            }
-        },
-        {
-            "mSChartEditorInputAction": "ToolNoteLaneOpen",
-            "properties": {
-                "displayName": "Note Tool Open Note",
-                "rebindable": true,
-                "hiddenInLists": false,
-                "anyDirectionAxis": false,
-                "category": 3,
-                "allowSameFrameMultiInput": false
-            }
-        },
-        {
             "mSChartEditorInputAction": "CloseMenu",
             "properties": {
                 "displayName": "Close Menu",
@@ -755,226 +568,6 @@
                 "rebindable": true,
                 "hiddenInLists": false,
                 "anyDirectionAxis": false,
-                "category": 4,
-                "allowSameFrameMultiInput": false
-            }
-        },
-        {
-            "mSChartEditorInputAction": "GuitarFretBlue",
-            "properties": {
-                "displayName": "Blue Fret",
-                "rebindable": true,
-                "hiddenInLists": false,
-                "anyDirectionAxis": false,
-                "category": 4,
-                "allowSameFrameMultiInput": false
-            }
-        },
-        {
-            "mSChartEditorInputAction": "GuitarFretOrange",
-            "properties": {
-                "displayName": "Orange Fret",
-                "rebindable": true,
-                "hiddenInLists": false,
-                "anyDirectionAxis": false,
-                "category": 4,
-                "allowSameFrameMultiInput": false
-            }
-        },
-        {
-            "mSChartEditorInputAction": "DrumPadRed",
-            "properties": {
-                "displayName": "Drum Pad Red",
-                "rebindable": true,
-                "hiddenInLists": false,
-                "anyDirectionAxis": false,
-                "category": 5,
-                "allowSameFrameMultiInput": true
-            }
-        },
-        {
-            "mSChartEditorInputAction": "DrumPadYellow",
-            "properties": {
-                "displayName": "Drum Pad Yellow",
-                "rebindable": true,
-                "hiddenInLists": false,
-                "anyDirectionAxis": false,
-                "category": 5,
-                "allowSameFrameMultiInput": true
-            }
-        },
-        {
-            "mSChartEditorInputAction": "DrumPadBlue",
-            "properties": {
-                "displayName": "Drum Pad Blue",
-                "rebindable": true,
-                "hiddenInLists": false,
-                "anyDirectionAxis": false,
-                "category": 5,
-                "allowSameFrameMultiInput": true
-            }
-        },
-        {
-            "mSChartEditorInputAction": "DrumPadOrange",
-            "properties": {
-                "displayName": "Drum Pad Orange",
-                "rebindable": true,
-                "hiddenInLists": false,
-                "anyDirectionAxis": false,
-                "category": 5,
-                "allowSameFrameMultiInput": true
-            }
-        },
-        {
-            "mSChartEditorInputAction": "DrumPadGreen",
-            "properties": {
-                "displayName": "Drum Pad Green",
-                "rebindable": true,
-                "hiddenInLists": false,
-                "anyDirectionAxis": false,
-                "category": 5,
-                "allowSameFrameMultiInput": true
-            }
-        },
-        {
-            "mSChartEditorInputAction": "DrumPadKick",
-            "properties": {
-                "displayName": "Drum Kick",
-                "rebindable": true,
-                "hiddenInLists": false,
-                "anyDirectionAxis": false,
-                "category": 5,
-                "allowSameFrameMultiInput": true
-            }
-        },
-        {
-            "mSChartEditorInputAction": "DrumPadProRedTom",
-            "properties": {
-                "displayName": "Pro Drums Red Tom",
-                "rebindable": true,
-                "hiddenInLists": false,
-                "anyDirectionAxis": false,
-                "category": 6,
-                "allowSameFrameMultiInput": true
-            }
-        },
-        {
-            "mSChartEditorInputAction": "DrumPadProRedCymbal",
-            "properties": {
-                "displayName": "Pro Drums Red Cymbal",
-                "rebindable": true,
-                "hiddenInLists": true,
-                "anyDirectionAxis": false,
-                "category": 6,
-                "allowSameFrameMultiInput": true
-            }
-        },
-        {
-            "mSChartEditorInputAction": "DrumPadProYellowTom",
-            "properties": {
-                "displayName": "Pro Drums Yellow Tom",
-                "rebindable": true,
-                "hiddenInLists": false,
-                "anyDirectionAxis": false,
-                "category": 6,
-                "allowSameFrameMultiInput": true
-            }
-        },
-        {
-            "mSChartEditorInputAction": "DrumPadProYellowCymbal",
-            "properties": {
-                "displayName": "Pro Drums Yellow Cymbal",
-                "rebindable": true,
-                "hiddenInLists": false,
-                "anyDirectionAxis": false,
-                "category": 6,
-                "allowSameFrameMultiInput": true
-            }
-        },
-        {
-            "mSChartEditorInputAction": "DrumPadProBlueTom",
-            "properties": {
-                "displayName": "Pro Drums Blue Tom",
-                "rebindable": true,
-                "hiddenInLists": false,
-                "anyDirectionAxis": false,
-                "category": 6,
-                "allowSameFrameMultiInput": true
-            }
-        },
-        {
-            "mSChartEditorInputAction": "DrumPadProBlueCymbal",
-            "properties": {
-                "displayName": "Pro Drums Blue Cymbal",
-                "rebindable": true,
-                "hiddenInLists": false,
-                "anyDirectionAxis": false,
-                "category": 6,
-                "allowSameFrameMultiInput": true
-            }
-        },
-        {
-            "mSChartEditorInputAction": "DrumPadProOrangeTom",
-            "properties": {
-                "displayName": "Pro Drums Green Tom",
-                "rebindable": true,
-                "hiddenInLists": false,
-                "anyDirectionAxis": false,
-                "category": 6,
-                "allowSameFrameMultiInput": true
-            }
-        },
-        {
-            "mSChartEditorInputAction": "DrumPadProOrangeCymbal",
-            "properties": {
-                "displayName": "Pro Drums Green Cymbal",
-                "rebindable": true,
-                "hiddenInLists": false,
-                "anyDirectionAxis": false,
-                "category": 6,
-                "allowSameFrameMultiInput": true
-            }
-        },
-        {
-            "mSChartEditorInputAction": "DrumPadProGreenTom",
-            "properties": {
-                "displayName": "Pro Drums Lane 5 Tom",
-                "rebindable": true,
-                "hiddenInLists": true,
-                "anyDirectionAxis": false,
-                "category": 6,
-                "allowSameFrameMultiInput": true
-            }
-        },
-        {
-            "mSChartEditorInputAction": "DrumPadProGreenCymbal",
-            "properties": {
-                "displayName": "Pro Drums Lane 5 Cymbal",
-                "rebindable": true,
-                "hiddenInLists": true,
-                "anyDirectionAxis": false,
-                "category": 6,
-                "allowSameFrameMultiInput": true
-            }
-        },
-        {
-            "mSChartEditorInputAction": "DrumPadProKick1",
-            "properties": {
-                "displayName": "Pro Drums Kick",
-                "rebindable": true,
-                "hiddenInLists": false,
-                "anyDirectionAxis": false,
-                "category": 6,
-                "allowSameFrameMultiInput": false
-            }
-        },
-        {
-            "mSChartEditorInputAction": "Whammy",
-            "properties": {
-                "displayName": "Whammy",
-                "rebindable": true,
-                "hiddenInLists": false,
-                "anyDirectionAxis": true,
                 "category": 4,
                 "allowSameFrameMultiInput": false
             }

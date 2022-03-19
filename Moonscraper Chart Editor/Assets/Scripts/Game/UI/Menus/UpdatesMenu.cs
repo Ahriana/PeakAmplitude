@@ -21,7 +21,7 @@ public class UpdatesMenu : MonoBehaviour
 
         if (hasNewerVersion && latestRelease.Assets.Count > 0)
         {
-            textInfo.text = string.Format("A new version of Moonscraper Chart Editor is available.\n\nCurrent version- v{0}\nLatest version- v{1}", currentVersion, latestRelease.TagName);
+            textInfo.text = string.Format("A new version of PeakAmplitude is available.\n\nCurrent version- v{0}\nLatest version- v{1}", currentVersion, latestRelease.TagName);
 
             downloadLatestButton.onClick.RemoveAllListeners();
             downloadLatestButton.onClick.AddListener(() =>
@@ -31,7 +31,7 @@ public class UpdatesMenu : MonoBehaviour
         }
         else
         {
-            textInfo.text = string.Format("Moonscraper Chart Editor is up to date. The current version is v{0}", currentVersion);         
+            textInfo.text = string.Format("PeakAmplitude is up to date. The current version is v{0}", currentVersion);         
         }
     }
 

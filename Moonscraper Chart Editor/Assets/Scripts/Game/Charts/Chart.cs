@@ -208,9 +208,7 @@ namespace MoonscraperChartEditor.Song
 
         public enum GameMode
         {
-            Guitar,
-            Drums,
-            GHLGuitar,
+            Amplitude,
 
             Unrecognised,
         }

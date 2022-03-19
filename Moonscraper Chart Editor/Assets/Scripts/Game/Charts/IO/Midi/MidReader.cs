@@ -21,14 +21,12 @@ namespace MoonscraperChartEditor.Song.IO
 
         static readonly Dictionary<string, Song.Instrument> c_trackNameToInstrumentMap = new Dictionary<string, Song.Instrument>()
     {
-        { MidIOHelper.GUITAR_TRACK,        Song.Instrument.Guitar },
-        { MidIOHelper.GUITAR_COOP_TRACK,   Song.Instrument.GuitarCoop },
-        { MidIOHelper.BASS_TRACK,          Song.Instrument.Bass },
-        { MidIOHelper.RHYTHM_TRACK,        Song.Instrument.Rhythm },
-        { MidIOHelper.KEYS_TRACK,          Song.Instrument.Keys },
-        { MidIOHelper.DRUMS_TRACK,         Song.Instrument.Drums },
-        { MidIOHelper.GHL_GUITAR_TRACK,    Song.Instrument.GHLiveGuitar },
-        { MidIOHelper.GHL_BASS_TRACK,      Song.Instrument.GHLiveBass },
+        { MidIOHelper.Amp1_TRACK,           Song.Instrument.Amp1 },
+        { MidIOHelper.Amp2_TRACK,           Song.Instrument.Amp2 },
+        { MidIOHelper.Amp3_TRACK,           Song.Instrument.Amp3 },
+        { MidIOHelper.Amp4_TRACK,           Song.Instrument.Amp4 },
+        { MidIOHelper.Amp5_TRACK,           Song.Instrument.Amp5 },
+        { MidIOHelper.Amp6_TRACK,           Song.Instrument.Amp6 }
     };
 
         static readonly Dictionary<string, bool> c_trackExcludesMap = new Dictionary<string, bool>()
@@ -521,9 +519,6 @@ namespace MoonscraperChartEditor.Song.IO
                     for (int k = index; k < index + length; ++k)
                     {
                         notes[k].guitarFret = Note.GuitarFret.Open;
-
-                        if (gameMode == Chart.GameMode.Drums)
-                            notes[k].guitarFret = LoadDrumNoteToGuitarNote(notes[k].guitarFret);
                     }
                 }
             }
@@ -541,7 +536,7 @@ namespace MoonscraperChartEditor.Song.IO
                 if (endPos > 0)
                     --endPos;
 
-                Debug.Assert(instrument == Song.Instrument.Drums);
+                // Debug.Assert(instrument == Song.Instrument.Drums);
 
                 foreach (Song.Difficulty difficulty in EnumX<Song.Difficulty>.Values)
                 {
@@ -575,14 +570,6 @@ namespace MoonscraperChartEditor.Song.IO
         {
             switch (gameMode)
             {
-                case Chart.GameMode.GHLGuitar:
-                    {
-                        return GhlGuitarMidiNoteNumberToProcessFnMap;
-                    }
-                case Chart.GameMode.Drums:
-                    {
-                        return DrumsMidiNoteNumberToProcessFnMap;
-                    }
 
                 default: break;
             }
@@ -593,19 +580,17 @@ namespace MoonscraperChartEditor.Song.IO
         delegate void BuildPerDifficultyFn(int difficultyStartRange, Song.Difficulty difficulty);
         static void BuildGuitarMidiNoteNumberToProcessFnDict()
         {
-            const int EasyStartRange = 60;
-            const int MediumStartRange = 72;
-            const int HardStartRange = 84;
-            const int ExpertStartRange = 96;
+            const int EasyStartRange = 96;
+            const int MediumStartRange = 102;
+            const int HardStartRange = 108;
+            const int ExpertStartRange = 114;
 
             Dictionary<Note.GuitarFret, int> FretToMidiKey = new Dictionary<Note.GuitarFret, int>()
         {
             // { Note.GuitarFret.Open, 0 }, // Handled by sysex event
             { Note.GuitarFret.Green, 0 },
-            { Note.GuitarFret.Red, 1 },
-            { Note.GuitarFret.Yellow, 2 },
-            { Note.GuitarFret.Blue, 3 },
-            { Note.GuitarFret.Orange, 4 },
+            { Note.GuitarFret.Red, 2 },
+            { Note.GuitarFret.Yellow, 4 }
         };
 
             BuildPerDifficultyFn BuildPerDifficulty = (int difficultyStartRange, Song.Difficulty difficulty) =>
@@ -623,22 +608,6 @@ namespace MoonscraperChartEditor.Song.IO
                             ProcessNoteOnEventAsNote(noteProcessParams, difficulty, fret);
                         });
                     }
-                }
-
-            // Process forced hopo or forced strum
-            {
-                    int flagKey = difficultyStartRange + 5;
-                    GuitarMidiNoteNumberToProcessFnMap.Add(flagKey, (in NoteProcessParams noteProcessParams) =>
-                    {
-                        ProcessNoteOnEventAsForcedType(noteProcessParams, difficulty, Note.NoteType.Hopo);
-                    });
-                }
-                {
-                    int flagKey = difficultyStartRange + 6;
-                    GuitarMidiNoteNumberToProcessFnMap.Add(flagKey, (in NoteProcessParams noteProcessParams) =>
-                    {
-                        ProcessNoteOnEventAsForcedType(noteProcessParams, difficulty, Note.NoteType.Strum);
-                    });
                 }
             };
 
@@ -781,27 +750,9 @@ namespace MoonscraperChartEditor.Song.IO
             NoteOnEvent noteEvent = noteProcessParams.noteEvent;
             var tick = (uint)noteEvent.AbsoluteTime;
             var sus = CalculateSustainLength(noteProcessParams.song, noteEvent);
-            var velocity = noteEvent.Velocity;
 
             Note.Flags flags = defaultFlags;
 
-            if (noteProcessParams.instrument == Song.Instrument.Drums)
-            {
-                switch (velocity)
-                {
-                    case MidIOHelper.VELOCITY_ACCENT:
-                        {
-                            flags |= Note.Flags.ProDrums_Accent;
-                            break;
-                        }
-                    case MidIOHelper.VELOCITY_GHOST:
-                        {
-                            flags |= Note.Flags.ProDrums_Ghost;
-                            break;
-                        }
-                    default: break;
-                }
-            }
 
             Note newNote = new Note(tick, ingameFret, sus, flags);
             chart.Add(newNote, false);

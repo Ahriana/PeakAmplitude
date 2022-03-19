@@ -41,10 +41,10 @@ public class StarpowerPropertiesPanelController : PropertiesPanelController
 
     void Controls()
     {
-        if (MSChartEditorInput.GetInputDown(MSChartEditorInputActions.ToggleStarpowerDrumsFillActivation) && drumFillToggle.gameObject.activeSelf && drumFillToggle.interactable)
-        {
-            drumFillToggle.isOn = !drumFillToggle.isOn;
-        }
+        // if (MSChartEditorInput.GetInputDown(MSChartEditorInputActions.ToggleStarpowerDrumsFillActivation) && drumFillToggle.gameObject.activeSelf && drumFillToggle.interactable)
+        // {
+        //     drumFillToggle.isOn = !drumFillToggle.isOn;
+        // }
     }
 
     void UpdateTogglesInteractable()

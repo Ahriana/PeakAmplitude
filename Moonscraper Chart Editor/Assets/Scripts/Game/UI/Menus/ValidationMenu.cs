@@ -34,23 +34,11 @@ public class ValidationMenu : DisplayMenu
         validateGH3.isOn = (currentOptions & SongValidate.ValidationOptions.GuitarHero3) != 0;
         validateCH.isOn = (currentOptions & SongValidate.ValidationOptions.CloneHero) != 0;
         autoValidateSongOnSave.isOn = Globals.gameSettings.autoValidateSongOnSave;
-
-        ValidateSong();
     }
 
     protected override void OnDisable()
     {
         base.OnDisable();
-    }
-
-    public void ValidateSong()
-    {
-        bool hasErrors;
-        SongValidate.ValidationParameters validateParams = new SongValidate.ValidationParameters() {
-            songLength = editor.currentSongLength,
-            checkMidiIssues = true,
-        };
-        errorText.text = SongValidate.GenerateReport(currentOptions, editor.currentSong, validateParams, out hasErrors);
     }
 
     void SetValidateOptions(bool value, SongValidate.ValidationOptions setting)
@@ -64,13 +52,11 @@ public class ValidationMenu : DisplayMenu
     public void SetValidateGH3Toggle(bool value)
     {
         SetValidateOptions(value, SongValidate.ValidationOptions.GuitarHero3);
-        ValidateSong();
     }
 
     public void SetValidateCHToggle(bool value)
     {
         SetValidateOptions(value, SongValidate.ValidationOptions.CloneHero);
-        ValidateSong();
     }
 
     public void SetAutoValidateSongOnSave(bool value)

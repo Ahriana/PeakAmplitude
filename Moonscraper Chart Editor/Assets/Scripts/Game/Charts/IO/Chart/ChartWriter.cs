@@ -295,7 +295,7 @@ namespace MoonscraperChartEditor.Song.IO
             IList<T> list, 
             ExportOptions exportOptions, 
             ErrorReport errorReport, 
-            Song.Instrument instrument = Song.Instrument.Guitar, 
+            Song.Instrument instrument = Song.Instrument.Amp1, 
             Song.Difficulty difficulty = Song.Difficulty.Expert
         ) where T : SongObject
         {
@@ -512,14 +512,7 @@ namespace MoonscraperChartEditor.Song.IO
 
             if (writeParameters.instrument != Song.Instrument.Unrecognised)
             {
-                if (instrument == Song.Instrument.Drums)
-                    fretNumber = GetDrumsSaveNoteNumber(note);
-
-                else if (instrument == Song.Instrument.GHLiveGuitar || instrument == Song.Instrument.GHLiveBass)
-                    fretNumber = GetGHLSaveNoteNumber(note);
-
-                else
-                    fretNumber = GetStandardSaveNoteNumber(note);
+                fretNumber = GetStandardSaveNoteNumber(note);
             }
             else
                 fretNumber = note.rawNote;
@@ -576,36 +569,6 @@ namespace MoonscraperChartEditor.Song.IO
                                 }
                             }
                         }
-                    }
-                }
-
-                // Write out cymbal flag for each note
-                if (writeParameters.instrument == Song.Instrument.Drums)
-                {
-                    int writeValue = ChartIOHelper.c_proDrumsOffset;
-                    int noteOffset;
-                    if (!ChartIOHelper.c_drumNoteToSaveNumberLookup.TryGetValue(note.rawNote, out noteOffset))
-                    {
-                        throw new Exception("Cannot find pro drum note offset for note " + note.drumPad.ToString());
-                    }
-
-                    writeValue += noteOffset;
-
-                    Note.Flags defaultFlagsForNote;
-                    if (!ChartIOHelper.c_drumNoteDefaultFlagsLookup.TryGetValue(note.rawNote, out defaultFlagsForNote))
-                    {
-                        defaultFlagsForNote = Note.Flags.None;
-                    }
-
-                    bool cymbalByDefault = (defaultFlagsForNote & Note.Flags.ProDrums_Cymbal) != 0;
-                    bool flaggedAsCymbal = (noteFlags & Note.Flags.ProDrums_Cymbal) != 0;
-                    bool writeCymbalFlag = cymbalByDefault != flaggedAsCymbal;
-
-                    if (writeCymbalFlag && !note.IsOpenNote())
-                    {
-                        output.Append(Globals.LINE_ENDING);
-                        output.Append(Globals.TABSPACE + writeParameters.scaledTick);
-                        output.AppendFormat(s_noteFormat, writeValue, 0);
                     }
                 }
             }

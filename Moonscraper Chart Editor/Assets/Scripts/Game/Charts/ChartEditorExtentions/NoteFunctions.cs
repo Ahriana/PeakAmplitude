@@ -50,7 +50,7 @@ public static class NoteFunctions {
 
         Note previous = startNote.previous;
 
-        int allVisited = startNote.gameMode == Chart.GameMode.GHLGuitar ? 63 : 31; // 0011 1111 for ghlive, 0001 1111 for standard
+        int allVisited = 31; // 0011 1111 for ghlive, 0001 1111 for standard
         int noteTypeVisited = 0;
 
         while (previous != null && noteTypeVisited < allVisited)
@@ -164,7 +164,7 @@ public static class NoteFunctions {
             else
             {
                 bool nextNoteSame = next.rawNote == note.rawNote;
-                bool drumsMode = note.gameMode == Chart.GameMode.Drums;
+                bool drumsMode = false;
 
 #if OPEN_NOTES_BLOCK_EXTENDED_SUSTAINS
                 bool blockedByOpenNote = next.IsOpenNote() && !drumsMode;
