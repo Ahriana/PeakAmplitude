@@ -1,11 +1,12 @@
 > **⚠️ NOTE: THIS IS NOT THE APPLICATION PROGRAM, THESE ARE THE SOURCE FILES. ⚠️**
 >
-> If you are looking to download Moonscraper Chart Editor please see the
+> If you are looking to download PeakAmplitude Chart Editor please see the
 > [releases page](https://github.com/Ahriana/PeakAmplitude/releases).
 
 ## About
-PeakAmplitude is an Amplitude chart editor based on Moonscraper, Moonscraper Chart Editor is a song editor for Guitar Hero style rhythm games mainly intended to support the custom song creation for games such as Guitar Hero, Clone Hero and Rock Band.
-[Moonscraper](https://github.com/FireFox2000000/Moonscraper-Chart-Editor).
+PeakAmplitude is an Amplitude chart editor based on Moonscraper (im sorry for what i did to it).
+Moonscraper Chart Editor is a song editor for Guitar Hero style rhythm games mainly intended to support the custom song creation for games such as Guitar Hero, Clone Hero and Rock Band.
+[Moonscraper Github Repo](https://github.com/FireFox2000000/Moonscraper-Chart-Editor).
 
 ## Compiling from Source
 Follow the instructions below for your desired platform to build and run from source.
