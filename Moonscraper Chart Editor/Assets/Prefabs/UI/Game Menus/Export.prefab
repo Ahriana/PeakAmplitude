@@ -7492,11 +7492,11 @@ MonoBehaviour:
     m_Options:
     - m_Text: Expert
       m_Image: {fileID: 0}
-    - m_Text: Hard
+    - m_Text: Advanced
       m_Image: {fileID: 0}
-    - m_Text: Medium
+    - m_Text: Intermediate
       m_Image: {fileID: 0}
-    - m_Text: Easy
+    - m_Text: Beginner
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
