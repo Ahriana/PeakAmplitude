@@ -99,7 +99,7 @@ public class BuildManager  {
         BuildTarget[] targets = {
             BuildTarget.StandaloneWindows64,
             BuildTarget.StandaloneWindows,
-            BuildTarget.StandaloneLinuxUniversal
+            BuildTarget.StandaloneLinux64
         };
 
         foreach (var target in targets) {
@@ -163,8 +163,8 @@ public class BuildManager  {
             installerCompileScriptPath = "MSCE Windows.iss";
             installerPlatform = "x64";
             break;
-        case BuildTarget.StandaloneLinuxUniversal:
-            architecture = "Linux (Universal)";
+        case BuildTarget.StandaloneLinux64:
+            architecture = "Linux (64 bit)";
             executableName = applicationName;
             compressionExtension = ".tar.gz";
 
