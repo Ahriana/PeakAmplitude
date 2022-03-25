@@ -87,7 +87,7 @@ public class PlayingState : SystemManagerState
         else if (MSChartEditorInput.GetInputDown(MSChartEditorInputActions.StepDecreaseBy1))
             Globals.gameSettings.snappingStep.AdjustBy(-1);
 
-        if (MSChartEditorInput.GetInputDown(MSChartEditorInputActions.PlayPause) || MSChartEditorInput.GetInputDown(MSChartEditorInputActions.StartGameplay))
+        if (MSChartEditorInput.GetInputDown(MSChartEditorInputActions.PlayPause))
         {
             editor.Stop();
         }

@@ -44,11 +44,6 @@ public class EditorState : SystemManagerState
                 editor.Play();
                 return;
             }
-            else if (MSChartEditorInput.GetInputDown(MSChartEditorInputActions.StartGameplay))
-            {
-                editor.StartGameplay();
-                return;
-            }
         }
 
         if (MSChartEditorInput.GetInputDown(MSChartEditorInputActions.Delete) && editor.selectedObjectsManager.currentSelectedObjects.Count > 0)

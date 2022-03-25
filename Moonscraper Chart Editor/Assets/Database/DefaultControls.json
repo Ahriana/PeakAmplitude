@@ -1201,30 +1201,6 @@
                 ],
                 "jsMaps": []
             }
-        },
-        {
-            "action": "StartGameplay",
-            "input": {
-                "kbMaps": [
-                    {
-                        "modifiers": 0,
-                        "keys": []
-                    },
-                    {
-                        "modifiers": 0,
-                        "keys": []
-                    }
-                ],
-                "gpButtonMaps": [
-                    {
-                        "buttons": [
-                            8
-                        ],
-                        "axes": []
-                    }
-                ],
-                "jsMaps": []
-            }
         }
     ]
 }

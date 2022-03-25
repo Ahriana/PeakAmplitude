@@ -92,8 +92,6 @@ public enum MSChartEditorInputActions
     GuitarFretGreen,
     GuitarFretRed,
     GuitarFretYellow,
-    
-    StartGameplay,
 }
 
 public static class MSChartEditorInput

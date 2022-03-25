@@ -571,17 +571,6 @@
                 "category": 4,
                 "allowSameFrameMultiInput": false
             }
-        },
-        {
-            "mSChartEditorInputAction": "StartGameplay",
-            "properties": {
-                "displayName": "Start Gameplay",
-                "rebindable": true,
-                "hiddenInLists": false,
-                "anyDirectionAxis": false,
-                "category": 0,
-                "allowSameFrameMultiInput": false
-            }
         }
     ]
 }
